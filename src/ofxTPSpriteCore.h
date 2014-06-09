@@ -28,6 +28,10 @@ public:
         texture = tex;
     }
     
+    virtual void setName(const string& name) {
+        //
+    }
+    
     virtual string getName() const {
         return "";
     }

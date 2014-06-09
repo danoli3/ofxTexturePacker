@@ -54,13 +54,21 @@ bool ofxTexturePacker::load(const string& fileToLoad) {
     // Create Sprites
     if(spriteData.size() != 0) {
         for(unsigned int i=0; i<=spriteData.size()-1; i++) {
-            if(spriteData[i]->isAnimated) {
-                //
-            } else {
-                ofxTPSprite *sprite = new ofxTPSprite(spriteData[i]);
-                sprite->setTexture(&texture->getTextureReference());
-                sprites.push_back(sprite);
-            }
+            
+            
+            ofxTPSprite *sprite = new ofxTPSprite(spriteData[i]);
+            sprite->setTexture(&texture->getTextureReference());
+            sprites.push_back(sprite);
+            
+//            if(spriteData[i]->isAnimated) {
+                ofxTPAnimatedSprite* sp = getAnimatedSprite("Default.png");
+                if(sp == NULL) {
+                    sp = new ofxTPAnimatedSprite();
+                    sp->setName("Default.png");
+                    animatedSprites.push_back(sp);
+                }
+                sp->addSprite(sprite);
+//            }
         }
         return true;
     } else {

@@ -21,9 +21,12 @@ public:
     void draw(int x, int y);
     void update();
     
+    void setName(const string& theName);
     string getName() const;
     
+    void addSprite(ofxTPSprite * sprite);
     ofxTPSprite* getCurrentSprite();
+    
     
     void play();
     void stop();
@@ -40,7 +43,7 @@ public:
     void setPosition(float pct);
     void setVolume(float volume); // 0..1
     void setLoopState(ofLoopType state);
-    void setSpeed(float speed);
+    void setSpeed(int speed);
     void setFrame(int frame);  // frame 0 = first frame...
 
     int	getCurrentFrame();
@@ -58,7 +61,7 @@ protected:
     unsigned int framesTotal;
     
     float position;
-    float speed;
+    int speed;
     float duration;
     ofLoopType loopType;
     bool bPlaying;
@@ -68,6 +71,10 @@ protected:
     //! frame is a vector of all ofxTPSprites for this Animated Sprite Sequence. Memory managed by ofxTexturePacker.
     vector<ofxTPSprite*> frames;
 };
+
+inline void ofxTPAnimatedSprite::setName(const string& theName) {
+    name = theName;
+}
 
 
 #endif /* defined(__ofxTPAnimatedSprite__) */

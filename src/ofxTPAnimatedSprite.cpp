@@ -7,7 +7,7 @@
 #include "ofxTPAnimatedSprite.h"
 
 
-ofxTPAnimatedSprite::ofxTPAnimatedSprite() : name(""), frame(0), loopType(OF_LOOP_NORMAL) {
+ofxTPAnimatedSprite::ofxTPAnimatedSprite() : name(""), frame(0), loopType(OF_LOOP_NORMAL), speed(24) {
     
 }
 
@@ -28,12 +28,19 @@ void ofxTPAnimatedSprite::update() {
     if(isPlaying() == false) {
         return;
     }
-    
-    nextFrame();
+    if(ofGetFrameNum() % speed == 0) {
+        nextFrame();
+    }
 }
 
 string ofxTPAnimatedSprite::getName() const {
     return name;
+}
+
+void ofxTPAnimatedSprite::addSprite(ofxTPSprite * sprite) {
+    frames.push_back(sprite);
+    frameLast = frames.size()-1;
+    framesTotal = frames.size();
 }
 
 ofxTPSprite* ofxTPAnimatedSprite::getCurrentSprite() {
@@ -105,7 +112,7 @@ void ofxTPAnimatedSprite::setLoopState(ofLoopType value) {
     loopType = value;
 }
 
-void ofxTPAnimatedSprite::setSpeed(float value) {
+void ofxTPAnimatedSprite::setSpeed(int value) {
     speed = value;
 }
 
@@ -137,21 +144,20 @@ void ofxTPAnimatedSprite::firstFrame() {
 }
 
 void ofxTPAnimatedSprite::nextFrame() {
-    int index = getCurrentFrame() + 1;
-    if(index > frameLast) {
-        if(loopType == OF_LOOP_NONE) {
-            index = frameLast;
-            if(isPlaying()) {
-                stop();
+        int index = getCurrentFrame() + 1;
+        if(index > frameLast) {
+            if(loopType == OF_LOOP_NONE) {
+                index = frameLast;
+                if(isPlaying()) {
+                    stop();
+                }
+            } else if(loopType == OF_LOOP_NORMAL) {
+                index = 0;
+            } else if(loopType == OF_LOOP_PALINDROME) {
+                // TODO.
             }
-        } else if(loopType == OF_LOOP_NORMAL) {
-            index = 0;
-        } else if(loopType == OF_LOOP_PALINDROME) {
-            // TODO.
         }
-    }
-    
-    setFrame(index);
+        setFrame(index);
 }
 
 void ofxTPAnimatedSprite::previousFrame() {
