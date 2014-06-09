@@ -61,10 +61,10 @@ bool ofxTexturePacker::load(const string& fileToLoad) {
             sprites.push_back(sprite);
             
 //            if(spriteData[i]->isAnimated) {
-                ofxTPAnimatedSprite* sp = getAnimatedSprite("Default.png");
+                ofxTPAnimatedSprite* sp = getAnimatedSprite(spriteData[i]->animationName);
                 if(sp == NULL) {
                     sp = new ofxTPAnimatedSprite();
-                    sp->setName("Default.png");
+                    sp->setName(spriteData[i]->animationName);
                     animatedSprites.push_back(sp);
                 }
                 sp->addSprite(sprite);

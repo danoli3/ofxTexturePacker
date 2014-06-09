@@ -12,8 +12,11 @@
 #include "ofMain.h"
 #include "ofxTPSpriteCore.h"
 
+#include <iostream>
 #include <string>
-#include <regex>
+
+//#include "regex.h"  // posix
+#include <Poco/RegularExpression.h>
 
 class ofxTPSpriteData {
 public:
