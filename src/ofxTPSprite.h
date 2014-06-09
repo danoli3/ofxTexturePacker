@@ -17,8 +17,10 @@ public:
     ofxTPSprite(ofxTPSpriteData* theData);
     void draw(int x, int y);
     string getName() const;
-protected:
+    
     ofxTPSpriteData* data;
+protected:
+    
 };
 
 inline string ofxTPSprite::getName() const {
