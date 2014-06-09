@@ -3,6 +3,7 @@
 // ofxTexturePacker - https://www.github.com/danoli3/ofxTexturePacker
 // Created by Daniel Rosser and Colin Friend on 9/06/2014.
 // ------------------------------------------------------------------
+#pragma once
 
 #ifndef __ofxTPSprite__
 #define __ofxTPSprite__
@@ -13,33 +14,15 @@
 
 class ofxTPSprite : public ofxTPSpriteCore {
 public:
-    ofxTPSprite(ofxTPSpriteData* theData) {
-        data = theData;
-    }
-    
-    void draw(int x, int y) {
-        if(data->getRotated()) {
-            ofPushMatrix();
-            ofRotate(90);
-        }
-        texture->drawSubsection(x, y, data->w, data->h, data->x, data->y);
-        if(data->getRotated()) {
-            ofPopMatrix();
-        }
-    }
-    
-    void update(int x, int y) {
-        
-    }
-    
-    virtual string getName() const {
-        return data->getName();
-    }
-    
-    
+    ofxTPSprite(ofxTPSpriteData* theData);
+    void draw(int x, int y);
+    string getName() const;
 protected:
     ofxTPSpriteData* data;
 };
 
+inline string ofxTPSprite::getName() const {
+    return data->getName();
+}
 
 #endif /* defined(__ofxTPSprite__) */

@@ -43,7 +43,6 @@ public:
 inline void ofxTPSpriteData::setName(const string& theName) {
     name = theName;
     determineAnimated();
-
 }
 
 inline string ofxTPSpriteData::getName() const {
