@@ -12,6 +12,9 @@
 #include "ofMain.h"
 #include "ofxTPSpriteCore.h"
 
+#include <string>
+#include <regex>
+
 class ofxTPSpriteData {
 public:
     ofxTPSpriteData();
@@ -26,6 +29,7 @@ public:
     
     // Members
     string name;
+    string animationName;
     int x;
     int y;
     int w;
