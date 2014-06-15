@@ -1,0 +1,41 @@
+<install>
+	<name>ofxTexturePacker</name>
+    <version>0.2</version>
+    <author><[CDATA[Daniel Rosser <danoli3@gmail.com> ]]></author>
+   
+    <code_url>https://github.com/danoli3/ofxTexturePacker</code_url>
+    <site_url>https://github.com/danoli3/</site_url>
+    <download_url>https://github.com/danoli3/ofxTexturePacker</download_url>
+   
+    <description><![CDATA[
+          Addon for loading and using Animated Sprites and Sprites generated using Texture Packer.
+    ]]></description>
+    
+	<add>
+		
+		<!-- 	=====================================================================	-->
+		<!--	========================== add per project using this addon =========	-->
+		<!-- 	=====================================================================	-->
+	
+		<src>
+			<folder name="addons/ofxTexturePacker/src">
+				<file>../../../addons/ofxTexturePacker/src/ofxTexturePacker.cpp</file>
+				<file>../../../addons/ofxTexturePacker/src/ofxTexturePacker.h</file>
+				<file>../../../addons/ofxTexturePacker/src/ofxTPAnimatedSprite.cpp</file>
+				<file>../../../addons/ofxTexturePacker/src/ofxTPAnimatedSprite.h</file>
+				<file>../../../addons/ofxTexturePacker/src/ofxTPLoader.cpp</file>
+				<file>../../../addons/ofxTexturePacker/src/ofxTPLoader.h</file>
+				<file>../../../addons/ofxTexturePacker/src/ofxTPSprite.cpp</file>
+				<file>../../../addons/ofxTexturePacker/src/ofxTPSprite.h</file>
+				<file>../../../addons/ofxTexturePacker/src/ofxTPSpriteCore.cpp</file>
+				<file>../../../addons/ofxTexturePacker/src/ofxTPSpriteCore.h</file>
+				<file>../../../addons/ofxTexturePacker/src/ofxTPSpriteData.cpp</file>
+				<file>../../../addons/ofxTexturePacker/src/ofxTPSpriteData.h</file>
+				<file>../../../addons/ofxTexturePacker/src/ofxTPTextureAtlas.h</file>
+				<file>../../../addons/ofxTexturePacker/src/ofxTPTypes.h</file>
+			</folder>
+		</src>
+		
+	</add>    
+    
+</install>

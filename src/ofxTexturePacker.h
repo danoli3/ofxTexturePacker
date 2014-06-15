@@ -53,7 +53,7 @@ public:
 protected:
     vector<ofxTPSprite*> sprites;
     vector<ofxTPAnimatedSprite*> animatedSprites;
-    ofImage* texture;
+    ofTexture* texture;
     ofxTPLoader loader;
 };
 

@@ -40,13 +40,17 @@ ofxTexturePacker::~ofxTexturePacker() {
 bool ofxTexturePacker::load(const string& fileToLoad) {
     // Load sprites
     vector<ofxTPSpriteData*> spriteData = loader.load(fileToLoad);
-    texture = new ofImage();
+    texture = new ofTexture();
     // Load Texture
+    
+    
     if(loader.getImagePath() != "") {
-        if(texture->loadImage(loader.getImagePath())) {
+        
+        if(ofLoadImage(*texture, loader.getImagePath())) {
             ofLog(OF_LOG_NOTICE, "ofxTexturePacker::loaded image");
         } else {
             ofLog(OF_LOG_ERROR, "ofxTexturePacker::image not loaded");
+            delete texture;
             return false;
         }
     }
@@ -57,7 +61,7 @@ bool ofxTexturePacker::load(const string& fileToLoad) {
             
             
             ofxTPSprite *sprite = new ofxTPSprite(spriteData[i]);
-            sprite->setTexture(&texture->getTextureReference());
+            sprite->setTexture(texture);
             sprites.push_back(sprite);
             
 //            if(spriteData[i]->isAnimated) {
