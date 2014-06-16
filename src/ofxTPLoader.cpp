@@ -31,7 +31,7 @@ vector<ofxTPSpriteData*> ofxTPLoader::load(const string fileName) {
         XML.getAttributeNames("TextureAtlas", names);
         if(names.size() != 0) {
             for(unsigned int i = 0; i<=names.size()-1; i++) {
-                ofLog(OF_LOG_NOTICE, names[i]);
+                ofLog(OF_LOG_VERBOSE, names[i]);
             }
         }
         
@@ -47,7 +47,7 @@ vector<ofxTPSpriteData*> ofxTPLoader::load(const string fileName) {
             XML.getAttributeNames("sprite", names);
             if(names.size() != 0) {
                 for(unsigned int i = 0; i<=names.size()-1; i++) {
-                    ofLog(OF_LOG_NOTICE, names[i]);
+                    ofLog(OF_LOG_VERBOSE, names[i]);
                 }
             }
             

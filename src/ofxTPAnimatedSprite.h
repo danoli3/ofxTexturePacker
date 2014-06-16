@@ -31,13 +31,13 @@ public:
     void play();
     void stop();
     
-    bool isPaused();
+    bool isPaused() const;
 
-    bool isPlaying();
-    float getPosition();
-    float getSpeed();
-    float getDuration();
-    bool getIsMovieDone();
+    bool isPlaying() const;
+    float getPosition() const;
+    float getSpeed() const;
+    float getDuration() const;
+    bool getIsMovieDone() const;
 
     void setPaused(bool bPause);
     void setPosition(float pct);
@@ -46,9 +46,9 @@ public:
     void setSpeed(int speed);
     void setFrame(int frame);  // frame 0 = first frame...
 
-    int	getCurrentFrame();
-    int	getTotalNumFrames();
-    ofLoopType getLoopState();
+    int	getCurrentFrame() const;
+    int	getTotalNumFrames() const;
+    ofLoopType getLoopState() const;
 
     void firstFrame();
     void nextFrame();
@@ -62,9 +62,13 @@ protected:
     
     float position;
     int speed;
+    float frameRate;
+    float frameTracker;
+    
     float duration;
     ofLoopType loopType;
     bool bPlaying;
+    bool bPlayingReverse;
     bool bPaused;
     bool bNewFrame;
     

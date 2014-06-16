@@ -7,8 +7,9 @@
 #include "ofxTPAnimatedSprite.h"
 
 
-ofxTPAnimatedSprite::ofxTPAnimatedSprite() : name(""), frame(0), loopType(OF_LOOP_NORMAL), speed(24) {
-    
+ofxTPAnimatedSprite::ofxTPAnimatedSprite() : name(""), frame(0), loopType(OF_LOOP_NORMAL), speed(24), frameRate(0.0f), frameTracker(0.0f) {
+    bPlaying = true;
+    bPlayingReverse = false;
 }
 
 void ofxTPAnimatedSprite::draw(int x, int y) {
@@ -28,8 +29,18 @@ void ofxTPAnimatedSprite::update() {
     if(isPlaying() == false) {
         return;
     }
-    if(ofGetFrameNum() % speed == 0) {
-        nextFrame();
+    float elapsed = ofGetLastFrameTime();
+    if(elapsed <= 0) {
+        return;
+    }
+    frameTracker += elapsed;
+    if(frameTracker >= elapsed * frameRate) {
+        frameTracker = 0.0f;
+        if(bPlayingReverse) {
+            previousFrame();
+        } else {
+            nextFrame();
+        }
     }
 }
 
@@ -70,27 +81,27 @@ void ofxTPAnimatedSprite::stop() {
     bPaused = false;
 }
 
-bool ofxTPAnimatedSprite::isPaused() {
+bool ofxTPAnimatedSprite::isPaused() const {
     return bPaused;
 }
 
-bool ofxTPAnimatedSprite::isPlaying() {
+bool ofxTPAnimatedSprite::isPlaying() const {
     return bPlaying;
 }
 
-float ofxTPAnimatedSprite::getPosition() {
+float ofxTPAnimatedSprite::getPosition() const {
     return position;
 }
 
-float ofxTPAnimatedSprite::getSpeed() {
+float ofxTPAnimatedSprite::getSpeed() const {
     return speed;
 }
 
-float ofxTPAnimatedSprite::getDuration() {
+float ofxTPAnimatedSprite::getDuration() const {
     return duration;
 }
 
-bool ofxTPAnimatedSprite::getIsMovieDone() {
+bool ofxTPAnimatedSprite::getIsMovieDone() const {
     bool bFinished = (bPlaying == false) && (getCurrentFrame() == frameLast);
     return bFinished;
 }
@@ -114,6 +125,9 @@ void ofxTPAnimatedSprite::setLoopState(ofLoopType value) {
 
 void ofxTPAnimatedSprite::setSpeed(int value) {
     speed = value;
+    if(speed > 0) {
+        frameRate = ofGetFrameRate() / float(speed);
+    }
 }
 
 void ofxTPAnimatedSprite::setFrame(int value) {
@@ -127,15 +141,15 @@ void ofxTPAnimatedSprite::setFrame(int value) {
     position = frame / (float)frameLast;
 }
 
-int	ofxTPAnimatedSprite::getCurrentFrame() {
+int	ofxTPAnimatedSprite::getCurrentFrame() const {
     return frame;
 }
 
-int	ofxTPAnimatedSprite::getTotalNumFrames() {
+int	ofxTPAnimatedSprite::getTotalNumFrames() const {
     return framesTotal;
 }
 
-ofLoopType ofxTPAnimatedSprite::getLoopState() {
+ofLoopType ofxTPAnimatedSprite::getLoopState() const {
     return loopType;
 }
 
@@ -144,20 +158,20 @@ void ofxTPAnimatedSprite::firstFrame() {
 }
 
 void ofxTPAnimatedSprite::nextFrame() {
-        int index = getCurrentFrame() + 1;
-        if(index > frameLast) {
-            if(loopType == OF_LOOP_NONE) {
-                index = frameLast;
-                if(isPlaying()) {
-                    stop();
-                }
-            } else if(loopType == OF_LOOP_NORMAL) {
-                index = 0;
-            } else if(loopType == OF_LOOP_PALINDROME) {
-                // TODO.
+    int index = getCurrentFrame() + 1;
+    if(index > frameLast) {
+        if(loopType == OF_LOOP_NONE) {
+            index = frameLast;
+            if(isPlaying()) {
+                stop();
             }
+        } else if(loopType == OF_LOOP_NORMAL) {
+            index = 0;
+        } else if(loopType == OF_LOOP_PALINDROME) {
+            // TODO.
         }
-        setFrame(index);
+    }
+    setFrame(index);
 }
 
 void ofxTPAnimatedSprite::previousFrame() {
