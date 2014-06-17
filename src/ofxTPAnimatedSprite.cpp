@@ -44,10 +44,6 @@ void ofxTPAnimatedSprite::update() {
     }
 }
 
-string ofxTPAnimatedSprite::getName() const {
-    return name;
-}
-
 void ofxTPAnimatedSprite::addSprite(ofxTPSprite * sprite) {
     frames.push_back(sprite);
     frameLast = frames.size()-1;
@@ -65,10 +61,9 @@ ofxTPSprite* ofxTPAnimatedSprite::getCurrentSprite() {
     }
 }
 
-
 void ofxTPAnimatedSprite::play() {
     
-    if(getIsMovieDone()) {
+    if(getIsAnimationDone()) {
         setFrame(0);
     }
     
@@ -101,7 +96,7 @@ float ofxTPAnimatedSprite::getDuration() const {
     return duration;
 }
 
-bool ofxTPAnimatedSprite::getIsMovieDone() const {
+bool ofxTPAnimatedSprite::getIsAnimationDone() const {
     bool bFinished = (bPlaying == false) && (getCurrentFrame() == frameLast);
     return bFinished;
 }
@@ -167,8 +162,6 @@ void ofxTPAnimatedSprite::nextFrame() {
             }
         } else if(loopType == OF_LOOP_NORMAL) {
             index = 0;
-        } else if(loopType == OF_LOOP_PALINDROME) {
-            // TODO.
         }
     }
     setFrame(index);
@@ -181,10 +174,7 @@ void ofxTPAnimatedSprite::previousFrame() {
             index = 0;
         } else if(loopType == OF_LOOP_NORMAL) {
             index = frameLast;
-        } else if(loopType == OF_LOOP_PALINDROME) {
-            // TODO.
         }
     }
-    
     setFrame(index);
 }

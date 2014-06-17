@@ -22,7 +22,7 @@ public:
     void update();
     
     void setName(const string& theName);
-    string getName() const;
+    const string& getName() const;
     
     void addSprite(ofxTPSprite * sprite);
     ofxTPSprite* getCurrentSprite();
@@ -37,7 +37,7 @@ public:
     float getPosition() const;
     float getSpeed() const;
     float getDuration() const;
-    bool getIsMovieDone() const;
+    bool getIsAnimationDone() const;
 
     void setPaused(bool bPause);
     void setPosition(float pct);
@@ -75,10 +75,15 @@ protected:
     //! frame is a vector of all ofxTPSprites for this Animated Sprite Sequence. Memory managed by ofxTexturePacker.
     vector<ofxTPSprite*> frames;
 };
-
+//------------
 inline void ofxTPAnimatedSprite::setName(const string& theName) {
     name = theName;
 }
+//------------
+inline const string& ofxTPAnimatedSprite::getName() const {
+    return name;
+}
+
 
 
 #endif /* defined(__ofxTPAnimatedSprite__) */

@@ -22,18 +22,19 @@ public:
     ~ofxTPLoader();
     
     vector<ofxTPSpriteData*> load(const string fileName);
-    
-    string getImagePath() const;
-    
+    const string& getImagePath() const;
     void clearXML();
+
     
     ofxTPTextureAtlas textureAtlas;
+    
+protected:
     ofxXmlSettings XML;
     
     bool bLoaded;
 };
 
-inline string ofxTPLoader::getImagePath() const {
+inline const string& ofxTPLoader::getImagePath() const {
     return textureAtlas.getImagePath();
 }
 

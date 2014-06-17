@@ -12,36 +12,32 @@
 #include "ofMain.h"
 #include "ofxTPTypes.h"
 
-
+//-----------------------------------------------------
 class ofxTPSpriteCore {
 public:
-    
     virtual void draw(int x, int y) {}
     virtual void update(int x, int y) {}
     
-    ofxTPSpriteType getType() {
-        return type;
-    }
-    ofxTPSpriteType type;
+    bool compareName(const string & otherName) const;
     
-    void setTexture(ofTexture* tex) {
-        texture = tex;
-    }
+    void setTexture(ofTexture* tex);
+    virtual void setName(const string& sName);
     
-    virtual void setName(const string& name) {
-        //
-    }
-    
-    virtual string getName() const {
-        return "";
-    }
-    
-    bool compareName(const string & otherName) const {
-        return (getName() == otherName);
-    }
-    
+    virtual const string& getName() const;
+    ofxTPSpriteType getType() const;
 protected:
     ofTexture * texture;
+    ofxTPSpriteType type;
+    string name;
 };
+
+//-------
+inline bool ofxTPSpriteCore::compareName(const string & otherName) const { return (getName() == otherName); }
+//-------
+inline void ofxTPSpriteCore::setName(const string& sName) { name = sName; }
+inline void ofxTPSpriteCore::setTexture(ofTexture* tex) { texture = tex; }
+//------- Getters
+inline const string& ofxTPSpriteCore::getName() const { return name; }
+inline ofxTPSpriteType ofxTPSpriteCore::getType() const { return type; }
 
 #endif /* defined(__ofxTPSpriteCore__) */

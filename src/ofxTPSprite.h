@@ -12,19 +12,25 @@
 #include "ofxTPSpriteCore.h"
 #include "ofxTPSpriteData.h"
 
+//------------------------------------------------------
 class ofxTPSprite : public ofxTPSpriteCore {
 public:
     ofxTPSprite(ofxTPSpriteData* theData);
+    
     void draw(int x, int y);
-    string getName() const;
     
-    ofxTPSpriteData* data;
+    const string& getName() const;
+    ofxTPSpriteData* getData();
 protected:
-    
+    ofxTPSpriteData* data;
 };
-
-inline string ofxTPSprite::getName() const {
+//----------
+inline const string& ofxTPSprite::getName() const {
     return data->getName();
+}
+//----------
+inline ofxTPSpriteData* ofxTPSprite::getData() {
+    return data;
 }
 
 #endif /* defined(__ofxTPSprite__) */

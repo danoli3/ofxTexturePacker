@@ -6,23 +6,14 @@
 
 #include "ofxTPSpriteData.h"
 
-
 ofxTPSpriteData::ofxTPSpriteData() : name(""), animationName(""), x(0), y(0), w(0), h(0), oX(0), oY(0), oW(0), oH(0), frame(0), isAnimated(false) {
     
 }
 
-
 void ofxTPSpriteData::determineAnimated() {
-//    vector<string> split = ofString
-//    if(split[0].size() != 0) {
-//
-//    }
-    
-// CP-11 version
     Poco::RegularExpression reg("((?:(?![\\d]*[.].*$)[\\w\\s])+)([\\d]*)([.].*)$");
 //    int match(const std::string& subject, Match& mtch, int options = 0) const;
     Poco::RegularExpression::MatchVec matches;
-    
     int numberOfMatches = reg.match(name, 0, matches);
     if(matches[0].length != 0) {
         if (matches[2].length > 0) {
@@ -38,36 +29,40 @@ void ofxTPSpriteData::determineAnimated() {
     else {
         ofLog(OF_LOG_ERROR, "ERROR: Filename format not recognised for " + name);
     }
-//    if (reg.match(name, matches)) {
-//        if (subStrings.length(2) > 0) {
-//            if (subStrings.length(1) > 0) {
-//                animationName = subStrings[1];
-//            }
-//            isAnimated = true;
-//            frame = ofToInt(subStrings[2]);
-//        } else {
-//            isAnimated = false;
-//        }
-//    } else {
-//        ofLog(OF_LOG_ERROR, "ERROR: Filename format not recognised for " + name);
-//    }
+//---------- CP-11 version
+/** 
+    if (reg.match(name, matches)) {
+        if (subStrings.length(2) > 0) {
+            if (subStrings.length(1) > 0) {
+                animationName = subStrings[1];
+            }
+            isAnimated = true;
+            frame = ofToInt(subStrings[2]);
+        } else {
+            isAnimated = false;
+        }
+    } else {
+        ofLog(OF_LOG_ERROR, "ERROR: Filename format not recognised for " + name);
+    }
+
+    smatch subStrings;
+    regex expression ("((?:(?![\\d]*[.].*$)[\\w\\s])+)([\\d]*)([.].*)$");
     
-//    smatch subStrings;
-//    regex expression ("((?:(?![\\d]*[.].*$)[\\w\\s])+)([\\d]*)([.].*)$");
-//    
-//    if (regex_match(name, subStrings, expression)) {
-//        if (subStrings.length(2) > 0) {
-//            if (subStrings.length(1) > 0) {
-//                animationName = subStrings[1];
-//            }
-//            isAnimated = true;
-//            frame = ofToInt(subStrings[2]);
-//        } else {
-//            isAnimated = false;
-//        }
-//    } else {
-//        ofLog(OF_LOG_ERROR, "ERROR: Filename format not recognised for " + name);
-//    }
+    if (regex_match(name, subStrings, expression)) {
+        if (subStrings.length(2) > 0) {
+            if (subStrings.length(1) > 0) {
+                animationName = subStrings[1];
+            }
+            isAnimated = true;
+            frame = ofToInt(subStrings[2]);
+        } else {
+            isAnimated = false;
+        }
+    } else {
+        ofLog(OF_LOG_ERROR, "ERROR: Filename format not recognised for " + name);
+    }
+*/
+
 }
 
 void ofxTPSpriteData::extractFrame() {

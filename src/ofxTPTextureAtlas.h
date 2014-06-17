@@ -4,6 +4,8 @@
 // Created by Daniel Rosser and Colin Friend on 9/06/2014.
 // ------------------------------------------------------------------
 
+#pragma once
+
 #ifndef OSXProject_ofxTPTextureAtlas_h
 #define OSXProject_ofxTPTextureAtlas_h
 
@@ -11,16 +13,28 @@
 
 class ofxTPTextureAtlas {
 public:
-    ofxTPTextureAtlas() : imagePath(""), width(0), height(0) { }
-    string getImagePath() const;
+    ofxTPTextureAtlas() : imagePath(""), w(0), h(0) { }
+    void setWidth(const int& sWidth);
+    void setHeight(const int& sHeight);
+    void setImagePath(const string& sImagePath);
+    
+    int getWidth() const;
+    int getHeight() const;
+    const string& getImagePath() const;
+
+protected:
     string imagePath;
-    int width;
-    int height;
+    int w;
+    int h;
 };
 
-inline string ofxTPTextureAtlas::getImagePath() const {
-    return imagePath;
-}
-
+//----------- Setters
+inline void ofxTPTextureAtlas::setWidth(const int& sWidth) { w = sWidth; }
+inline void ofxTPTextureAtlas::setHeight(const int& sHeight) { h = sHeight; }
+inline void ofxTPTextureAtlas::setImagePath(const string& sImagePath) { imagePath = sImagePath; }
+//----------- Getters
+inline int ofxTPTextureAtlas::getWidth() const { return w; }
+inline int ofxTPTextureAtlas::getHeight() const { return h; }
+inline const string& ofxTPTextureAtlas::getImagePath() const { return imagePath; }
 
 #endif

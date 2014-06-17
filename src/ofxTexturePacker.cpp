@@ -5,7 +5,6 @@
 // ------------------------------------------------------------------
 #include "ofxTexturePacker.h"
 
-
 ofxTexturePacker::ofxTexturePacker() {
     texture = NULL;
 }
@@ -38,41 +37,35 @@ ofxTexturePacker::~ofxTexturePacker() {
 }
 
 bool ofxTexturePacker::load(const string& fileToLoad) {
-    // Load sprites
+    //----------- Load sprites
     vector<ofxTPSpriteData*> spriteData = loader.load(fileToLoad);
     texture = new ofTexture();
-    // Load Texture
-    
-    
+    //----------- Load Texture
     if(loader.getImagePath() != "") {
-        
         if(ofLoadImage(*texture, loader.getImagePath())) {
-            ofLog(OF_LOG_NOTICE, "ofxTexturePacker::loaded image");
+            ofLog(OF_LOG_VERBOSE, "ofxTexturePacker::loaded image");
         } else {
             ofLog(OF_LOG_ERROR, "ofxTexturePacker::image not loaded");
             delete texture;
+            texture = NULL;
             return false;
         }
     }
-    
-    // Create Sprites
+    //----------- Create Sprites
     if(spriteData.size() != 0) {
         for(unsigned int i=0; i<=spriteData.size()-1; i++) {
-            
-            
             ofxTPSprite *sprite = new ofxTPSprite(spriteData[i]);
             sprite->setTexture(texture);
             sprites.push_back(sprite);
-            
-//            if(spriteData[i]->isAnimated) {
-                ofxTPAnimatedSprite* sp = getAnimatedSprite(spriteData[i]->animationName);
+            if(spriteData[i]->getAnimated()) {
+                ofxTPAnimatedSprite* sp = getAnimatedSprite(spriteData[i]->getAnimationName());
                 if(sp == NULL) {
                     sp = new ofxTPAnimatedSprite();
-                    sp->setName(spriteData[i]->animationName);
+                    sp->setName(spriteData[i]->getAnimationName());
                     animatedSprites.push_back(sp);
                 }
                 sp->addSprite(sprite);
-//            }
+            }
         }
         return true;
     } else {
@@ -129,6 +122,5 @@ ofxTPAnimatedSprite* ofxTexturePacker::getAnimatedSprite(const string& spriteNam
     } else {
         return NULL;
     }
-    
     return NULL;
 }
