@@ -19,6 +19,18 @@ http://www.codeandweb.com/what-is-a-sprite-sheet
 Get Texture Packer (has free to use version)
 http://www.codeandweb.com/texturepacker
 
+What this addon does?
+-------------------
+
+- This addon loads the exported TexturePacker texture and format into a usable data structure for c++ and openFrameworks.
+
+
+What export settings do I use in TexturePacker Application?
+-------------------
+
+- Currently use "Generic XML"
+- May look into getting openFrameworks offically supported and have our own defined XML format.
+
 Why use this addon?
 -------------------
 
