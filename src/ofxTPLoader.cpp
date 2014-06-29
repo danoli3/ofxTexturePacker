@@ -54,8 +54,8 @@ vector<ofxTPSpriteData*> ofxTPLoader::load(const string fileName) {
                 sprite->setName(XML.getAttribute("sprite", "n", "", i));
                 sprite->setX(XML.getAttribute("sprite", "x", 0, i));
                 sprite->setY(XML.getAttribute("sprite", "y", 0, i));
-                sprite->setWidth(XML.getAttribute("sprite", "w", 0, i));
-                sprite->setHeight(XML.getAttribute("sprite", "h", 0, i));
+                sprite->setW(XML.getAttribute("sprite", "w", 0, i));
+                sprite->setH(XML.getAttribute("sprite", "h", 0, i));
                 sprite->setOffsetX(XML.getAttribute("sprite", "oX", 0, i));
                 sprite->setOffsetY(XML.getAttribute("sprite", "oY", 0, i));
                 sprite->setOffsetWidth(XML.getAttribute("sprite", "oW", 0, i));

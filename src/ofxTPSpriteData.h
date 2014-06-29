@@ -31,6 +31,8 @@ public:
     
     void setX(const int& sX);
     void setY(const int& sY);
+    void setW(const int& sWidth);
+    void setH(const int& sHeight);
     void setWidth(const int& sWidth);
     void setHeight(const int& sHeight);
     void setOffsetX(const int& soX);
@@ -42,6 +44,8 @@ public:
     const string& getAnimationName() const;
     int getX() const;
     int getY() const;
+    int getW() const;
+    int getH() const;
     int getWidth() const;
     int getHeight() const;
     int getOffsetX() const;
@@ -80,6 +84,8 @@ inline void ofxTPSpriteData::setName(const string& theName) {
 inline void ofxTPSpriteData::setAnimationName(const string& sAnimationName) { animationName = sAnimationName; }
 inline void ofxTPSpriteData::setX(const int& sX) { x = sX; }
 inline void ofxTPSpriteData::setY(const int& sY) { y = sY; }
+inline void ofxTPSpriteData::setW(const int& sWidth) { w = sWidth; }
+inline void ofxTPSpriteData::setH(const int& sHeight) { h = sHeight; }
 inline void ofxTPSpriteData::setWidth(const int& sWidth) { w = sWidth; }
 inline void ofxTPSpriteData::setHeight(const int& sHeight) { h = sHeight; }
 inline void ofxTPSpriteData::setOffsetX(const int& soX) { oX = soX; }
@@ -91,8 +97,10 @@ inline const string& ofxTPSpriteData::getName() const { return name; }
 inline const string& ofxTPSpriteData::getAnimationName() const { return animationName; }
 inline int ofxTPSpriteData::getX() const { return x; }
 inline int ofxTPSpriteData::getY() const { return y; }
-inline int ofxTPSpriteData::getWidth() const { return w; }
-inline int ofxTPSpriteData::getHeight() const { return h; }
+inline int ofxTPSpriteData::getW() const { return w; }
+inline int ofxTPSpriteData::getH() const { return h; }
+inline int ofxTPSpriteData::getWidth() const { return w+getOffsetWidth(); }
+inline int ofxTPSpriteData::getHeight() const { return h+getOffsetHeight(); }
 inline int ofxTPSpriteData::getOffsetX() const { return oX; }
 inline int ofxTPSpriteData::getOffsetY() const { return oY; }
 inline int ofxTPSpriteData::getOffsetWidth() const { return oW; }
