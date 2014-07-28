@@ -19,6 +19,9 @@ void ofxTPSpriteData::determineAnimated() {
         if (matches[2].length > 0) {
             if (matches[1].length > 0) {
                 animationName = name.substr(matches[1].offset, matches[1].length);
+                if(animationName.substr(animationName.size()-1, animationName.size()) == "_") {
+                    animationName = animationName.substr(0, animationName.size()-1);
+                }
             }
             isAnimated = true;
             frame = ofToInt(name.substr(matches[2].offset, matches[2].length));
