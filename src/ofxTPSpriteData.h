@@ -99,8 +99,8 @@ inline int ofxTPSpriteData::getX() const { return x; }
 inline int ofxTPSpriteData::getY() const { return y; }
 inline int ofxTPSpriteData::getW() const { return w; }
 inline int ofxTPSpriteData::getH() const { return h; }
-inline int ofxTPSpriteData::getWidth() const { return w+getOffsetWidth(); }
-inline int ofxTPSpriteData::getHeight() const { return h+getOffsetHeight(); }
+inline int ofxTPSpriteData::getWidth() const { return getOffsetWidth(); }
+inline int ofxTPSpriteData::getHeight() const { return getOffsetHeight(); }
 inline int ofxTPSpriteData::getOffsetX() const { return oX; }
 inline int ofxTPSpriteData::getOffsetY() const { return oY; }
 inline int ofxTPSpriteData::getOffsetWidth() const { return oW; }
