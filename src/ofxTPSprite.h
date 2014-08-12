@@ -17,6 +17,7 @@ public:
     
     const string& getName() const;
     ofxTPSpriteData* getData();
+    float getWidth();
 protected:
     ofxTPSpriteData* data;
 };

@@ -42,8 +42,10 @@ vector<string> ofxTexturePacker::getAnimationNames(){
     for(unsigned int i=0; i<=spriteSize; i++) {
         ofxTPSprite* sprite = sprites[i];
         if(sprite->getData()->getAnimated()){
-            ofLog(OF_LOG_VERBOSE)<<sprite->getData()->getAnimationName()<<endl;
-            names.push_back(sprite->getData()->getAnimationName());
+            if(find(names.begin(), names.end(), sprite->getData()->getAnimationName()) == names.end()){
+                names.push_back(sprite->getData()->getAnimationName());
+                ofLog(OF_LOG_VERBOSE)<<"Animation Named "<<names.back()<<" found"<<endl;
+            }
         }
     }
     return names;
@@ -55,6 +57,7 @@ vector<string> ofxTexturePacker::getSpriteNames(){
     for(unsigned int i=0; i<=spriteSize; i++) {
         ofxTPSprite* sprite = sprites[i];
         names.push_back(sprite->getName());
+        ofLog(OF_LOG_VERBOSE)<<"Sprite Named "<<names.back()<<" found"<<endl;
     }
     return names;
 }

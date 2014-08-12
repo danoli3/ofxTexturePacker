@@ -69,7 +69,7 @@ protected:
 };
 
 inline void ofxTPSpriteData::determineRotated(const string & isRotated) {
-    rotated = (isRotated == "y");
+    rotated = (isRotated == "y")?true:false;
 }
 
 inline void ofxTPSpriteData::setName(const string& theName) {

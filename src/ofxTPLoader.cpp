@@ -48,8 +48,7 @@ vector<ofxTPSpriteData*> ofxTPLoader::load(const string fileName) {
                     ofLog(OF_LOG_VERBOSE, names[i]);
                 }
             }
-            unsigned int maxSpritesRead = MIN(numberOfSprites, 100); // @todo vector size
-            for(int i = 0; i < maxSpritesRead; i++){
+            for(int i = 0; i < numberOfSprites; i++){
                 ofxTPSpriteData * sprite = new ofxTPSpriteData();
                 sprite->setName(XML.getAttribute("sprite", "n", "", i));
                 sprite->setX(XML.getAttribute("sprite", "x", 0, i));
