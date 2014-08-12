@@ -6,8 +6,6 @@
 
 #pragma once
 
-#ifndef OSXProject_ofxTPTextureAtlas_h
-#define OSXProject_ofxTPTextureAtlas_h
 
 #include "ofMain.h"
 
@@ -37,4 +35,3 @@ inline int ofxTPTextureAtlas::getWidth() const { return w; }
 inline int ofxTPTextureAtlas::getHeight() const { return h; }
 inline const string& ofxTPTextureAtlas::getImagePath() const { return imagePath; }
 
-#endif

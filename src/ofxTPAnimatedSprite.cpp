@@ -7,7 +7,7 @@
 #include "ofxTPAnimatedSprite.h"
 
 
-ofxTPAnimatedSprite::ofxTPAnimatedSprite() : name(""), frame(0), loopType(OF_LOOP_NORMAL), speed(24), frameRate(0.0f), frameTracker(0.0f) {
+ofxTPAnimatedSprite::ofxTPAnimatedSprite() : name(""), frame(0), loopType(OF_LOOP_NORMAL), speed(24), frameRate(2.0f), frameTracker(0.0f) {
     bPlaying = true;
     bPlayingReverse = false;
 }
