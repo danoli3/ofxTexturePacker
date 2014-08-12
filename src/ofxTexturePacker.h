@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef __ofxTexturePacker__
-#define __ofxTexturePacker__
-
 #include <iostream>
 #include "ofMain.h"
 #include "ofxTPLoader.h"
@@ -58,4 +55,4 @@ protected:
     ofxTPLoader loader;
 };
 
-#endif /* defined(__ofxTexturePacker__) */
+

@@ -5,10 +5,6 @@
 // ------------------------------------------------------------------
 
 #pragma once
-
-#ifndef __ofxTPSpriteData__
-#define __ofxTPSpriteData__
-
 #include "ofMain.h"
 #include "ofxTPSpriteCore.h"
 
@@ -109,4 +105,3 @@ inline int ofxTPSpriteData::getFrame() const { return frame; }
 inline bool ofxTPSpriteData::getRotated() const { return rotated; }
 inline bool ofxTPSpriteData::getAnimated() const { return isAnimated; }
 
-#endif /* defined(__ofxTPSpriteData__) */

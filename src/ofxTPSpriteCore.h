@@ -5,10 +5,6 @@
 // ------------------------------------------------------------------
 
 #pragma once
-
-#ifndef __ofxTPSpriteCore__
-#define __ofxTPSpriteCore__
-
 #include "ofMain.h"
 #include "ofxTPTypes.h"
 
@@ -40,4 +36,3 @@ inline void ofxTPSpriteCore::setTexture(ofTexture* tex) { texture = tex; }
 inline const string& ofxTPSpriteCore::getName() const { return name; }
 inline ofxTPSpriteType ofxTPSpriteCore::getType() const { return type; }
 
-#endif /* defined(__ofxTPSpriteCore__) */

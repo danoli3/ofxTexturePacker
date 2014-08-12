@@ -5,10 +5,6 @@
 // ------------------------------------------------------------------
 
 #pragma once
-
-#ifndef __ofxTPLoader__
-#define __ofxTPLoader__
-
 #include "ofMain.h"
 #include "ofxXmlSettings.h"
 #include "ofxTPSpriteData.h"
@@ -38,4 +34,4 @@ inline const string& ofxTPLoader::getImagePath() const {
     return textureAtlas.getImagePath();
 }
 
-#endif /* defined(__ofxTPLoader__) */
+
