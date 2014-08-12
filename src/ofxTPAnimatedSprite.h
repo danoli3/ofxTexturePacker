@@ -50,6 +50,9 @@ public:
     void nextFrame();
     void previousFrame();
     
+    float getWidth();
+    float getHeight();
+    
 protected:
     string name;
     unsigned int frame;

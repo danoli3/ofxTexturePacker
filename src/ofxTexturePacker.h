@@ -44,6 +44,8 @@ public:
     
     bool load(const string& fileToLoad);
     void drawTest();
+    vector<string> getSpriteNames();
+    vector<string> getAnimationNames();
     
     ofxTPSprite* getSprite(const string& spriteName);
     ofxTPAnimatedSprite* getAnimatedSprite(const string& spriteName);

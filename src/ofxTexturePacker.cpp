@@ -36,6 +36,28 @@ ofxTexturePacker::~ofxTexturePacker() {
     }
 }
 
+vector<string> ofxTexturePacker::getAnimationNames(){
+    vector<string> names;
+    int spriteSize = sprites.size()-1;
+    for(unsigned int i=0; i<=spriteSize; i++) {
+        ofxTPSprite* sprite = sprites[i];
+        if(sprite->getData()->getAnimated()){
+            names.push_back(sprite->getData()->getAnimationName());
+        }
+    }
+    return names;
+}
+
+vector<string> ofxTexturePacker::getSpriteNames(){
+    vector<string> names;
+    int spriteSize = sprites.size()-1;
+    for(unsigned int i=0; i<=spriteSize; i++) {
+        ofxTPSprite* sprite = sprites[i];
+        names.push_back(sprite->getName());
+    }
+    return names;
+}
+
 bool ofxTexturePacker::load(const string& fileToLoad) {
     //----------- Load sprites
     vector<ofxTPSpriteData*> spriteData = loader.load(fileToLoad);
@@ -57,7 +79,6 @@ bool ofxTexturePacker::load(const string& fileToLoad) {
             ofxTPSprite *sprite = new ofxTPSprite(spriteData[i]);
             sprite->setTexture(texture);
             sprites.push_back(sprite);
-            
             if(spriteData[i]->getAnimated()) {
                 ofxTPAnimatedSprite* sp = getAnimatedSprite(spriteData[i]->getAnimationName());
                 if(sp == NULL) {
