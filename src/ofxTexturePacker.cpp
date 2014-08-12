@@ -42,6 +42,7 @@ vector<string> ofxTexturePacker::getAnimationNames(){
     for(unsigned int i=0; i<=spriteSize; i++) {
         ofxTPSprite* sprite = sprites[i];
         if(sprite->getData()->getAnimated()){
+            ofLog(OF_LOG_VERBOSE)<<sprite->getData()->getAnimationName()<<endl;
             names.push_back(sprite->getData()->getAnimationName());
         }
     }
