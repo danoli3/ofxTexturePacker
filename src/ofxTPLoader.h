@@ -26,16 +26,16 @@ public:
     void clearXML();
 
     
-    ofxTPTextureAtlas textureAtlas;
+    ofxTPTextureAtlas * textureAtlas;
     
 protected:
-    ofxXmlSettings XML;
+    ofxXmlSettings * XML;
     
     bool bLoaded;
 };
 
 inline const string& ofxTPLoader::getImagePath() const {
-    return textureAtlas.getImagePath();
+    return textureAtlas->getImagePath();
 }
 
 #endif /* defined(__ofxTPLoader__) */

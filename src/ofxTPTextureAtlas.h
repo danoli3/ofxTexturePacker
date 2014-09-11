@@ -13,7 +13,9 @@
 
 class ofxTPTextureAtlas {
 public:
-    ofxTPTextureAtlas() : imagePath(""), w(0), h(0) { }
+    ofxTPTextureAtlas() : imagePath(""), w(0), h(0) {
+        
+    }
     void setWidth(const int& sWidth);
     void setHeight(const int& sHeight);
     void setImagePath(const string& sImagePath);
@@ -22,7 +24,7 @@ public:
     int getHeight() const;
     const string& getImagePath() const;
 
-protected:
+private:
     string imagePath;
     int w;
     int h;

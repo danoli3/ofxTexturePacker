@@ -45,17 +45,40 @@ public:
     ofxTexturePacker();
     ~ofxTexturePacker();
     
-    bool load(const string& fileToLoad);
+    bool load(const string& fileToLoad, bool bLoadTexture=true);
+    
     void drawTest();
     
     ofxTPSprite* getSprite(const string& spriteName);
     ofxTPAnimatedSprite* getAnimatedSprite(const string& spriteName);
     
+    ofTexture* getTexture();
+    const string& getTextureFilePath() const;
+    void setTexture(ofTexture* newTexture);
+    
 protected:
+
     vector<ofxTPSprite*> sprites;
     vector<ofxTPAnimatedSprite*> animatedSprites;
     ofTexture* texture;
-    ofxTPLoader loader;
+    ofxTPLoader* loader;
+    
+    void createLoader();
+    void removeLoader();
+    void removeTexture();
 };
+
+inline ofTexture* ofxTexturePacker::getTexture() {
+    return texture;
+}
+
+inline const string& ofxTexturePacker::getTextureFilePath() const {
+    if(loader) {
+        return loader->getImagePath();
+    } else {
+        return "";
+    }
+    
+}
 
 #endif /* defined(__ofxTexturePacker__) */
