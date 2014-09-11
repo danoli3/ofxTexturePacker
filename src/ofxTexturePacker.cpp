@@ -152,6 +152,16 @@ void ofxTexturePacker::setTexture(ofTexture* newTexture) {
     
     texture = newTexture;
     
+    if(sprites.size() != 0) {
+        unsigned int spriteSize = sprites.size()-1;
+        for(unsigned int i=0; i<=spriteSize; i++) {
+            ofxTPSprite* sprite = sprites[i];
+            if(sprite != NULL) {
+                sprite->setTexture(texture);
+            }
+        }
+    }
+    
     // -------------- Update sprites with the texture
     if(animatedSprites.size() != 0) {
         unsigned int spriteSize = animatedSprites.size()-1;
