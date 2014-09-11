@@ -14,8 +14,7 @@ void ofxTPSprite::draw(int x, int y) {
         ofPushMatrix();
         ofRotate(90);
     }
-    texture->drawSubsection(x+data->getOffsetX(), y+data->getOffsetY(),
-                            data->getW(), data->getH(), data->getX(), data->getY());
+    texture->drawSubsection(x+data->getOffsetX(), y+data->getOffsetY(), data->getW(), data->getH(), data->getX(), data->getY(), data->getW(), data->getH());
     if(data->getRotated()) {
         ofPopMatrix();
     }
