@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:43f5df82d5e819262084938e52cf71fb:5880c767ea5d25105fe81ea08f791608:0f0172ff32198e56ec60c01f6e7748bb$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="spritesheet.png" width="1012" height="1024">
+    <sprite n="Box2" x="487" y="896" w="117" h="120" oX="1" oY="0" oW="119" oH="120"/>
+    <sprite n="CapGuyWalk0001" x="2" y="260" w="505" h="252" oX="25" oY="7" oW="300" oH="521" r="y"/>
+    <sprite n="CapGuyWalk0002" x="2" y="260" w="505" h="252" oX="25" oY="7" oW="300" oH="521" r="y"/>
+    <sprite n="CapGuyWalk0003" x="2" y="756" w="483" h="266" oX="2" oY="15" oW="300" oH="521" r="y"/>
+    <sprite n="CapGuyWalk0004" x="2" y="756" w="483" h="266" oX="2" oY="15" oW="300" oH="521" r="y"/>
+    <sprite n="CapGuyWalk0005" x="2" y="514" w="491" h="240" oX="44" oY="5" oW="300" oH="521" r="y"/>
+    <sprite n="CapGuyWalk0006" x="2" y="514" w="491" h="240" oX="44" oY="5" oW="300" oH="521" r="y"/>
+    <sprite n="CapGuyWalk0007" x="495" y="670" w="489" h="224" oX="68" oY="4" oW="300" oH="521" r="y"/>
+    <sprite n="CapGuyWalk0008" x="495" y="670" w="489" h="224" oX="68" oY="4" oW="300" oH="521" r="y"/>
+    <sprite n="CapGuyWalk0009" x="513" y="2" w="497" h="220" oX="55" oY="6" oW="300" oH="521" r="y"/>
+    <sprite n="CapGuyWalk0010" x="513" y="2" w="497" h="220" oX="55" oY="6" oW="300" oH="521" r="y"/>
+    <sprite n="CapGuyWalk0011" x="513" y="224" w="497" h="212" oX="49" oY="14" oW="300" oH="521" r="y"/>
+    <sprite n="CapGuyWalk0012" x="513" y="224" w="497" h="212" oX="49" oY="14" oW="300" oH="521" r="y"/>
+    <sprite n="CapGuyWalk0013" x="509" y="438" w="501" h="230" oX="54" oY="6" oW="300" oH="521" r="y"/>
+    <sprite n="CapGuyWalk0014" x="509" y="438" w="501" h="230" oX="54" oY="6" oW="300" oH="521" r="y"/>
+    <sprite n="CapGuyWalk0015" x="2" y="2" w="509" h="256" oX="36" oY="4" oW="300" oH="521" r="y"/>
+    <sprite n="CapGuyWalk0016" x="2" y="2" w="509" h="256" oX="36" oY="4" oW="300" oH="521" r="y"/>
+</TextureAtlas>
