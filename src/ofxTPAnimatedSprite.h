@@ -5,10 +5,6 @@
 // ------------------------------------------------------------------
 
 #pragma once
-
-#ifndef __ofxTPAnimatedSprite__
-#define __ofxTPAnimatedSprite__
-
 #include "ofMain.h"
 #include "ofxTPSpriteCore.h"
 #include "ofxTPTypes.h"
@@ -54,6 +50,9 @@ public:
     void nextFrame();
     void previousFrame();
     
+    float getWidth();
+    float getHeight();
+    
 protected:
     string name;
     unsigned int frame;
@@ -84,6 +83,3 @@ inline const string& ofxTPAnimatedSprite::getName() const {
     return name;
 }
 
-
-
-#endif /* defined(__ofxTPAnimatedSprite__) */

@@ -54,8 +54,7 @@ vector<ofxTPSpriteData*> ofxTPLoader::load(const string fileName) {
                     ofLog(OF_LOG_VERBOSE, names[i]);
                 }
             }
-            unsigned int maxSpritesRead = MIN(numberOfSprites, 100); // @todo vector size
-            for(int i = 0; i < maxSpritesRead; i++){
+            for(int i = 0; i < numberOfSprites; i++){
                 ofxTPSpriteData * sprite = new ofxTPSpriteData();
                 sprite->setName(XML->getAttribute("sprite", "n", "", i));
                 sprite->setX(XML->getAttribute("sprite", "x", 0, i));
@@ -64,8 +63,8 @@ vector<ofxTPSpriteData*> ofxTPLoader::load(const string fileName) {
                 sprite->setH(XML->getAttribute("sprite", "h", 0, i));
                 sprite->setOffsetX(XML->getAttribute("sprite", "oX", 0, i));
                 sprite->setOffsetY(XML->getAttribute("sprite", "oY", 0, i));
-                sprite->setOffsetWidth(XML->getAttribute("sprite", "oW", 0, i));
-                sprite->setOffsetHeight(XML->getAttribute("sprite", "oH", 0, i));
+                sprite->setOffsetWidth(XML->getAttribute("sprite", "oW",  sprite->getW(), i));
+                sprite->setOffsetHeight(XML->getAttribute("sprite", "oH", sprite->getH(), i));
                 sprite->determineRotated(XML->getAttribute("sprite", "r", "", i));
                 sprites.push_back(sprite);
             }

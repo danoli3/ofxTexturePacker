@@ -59,6 +59,33 @@ void ofxTexturePacker::removeTexture() {
     }
 }
 
+vector<string> ofxTexturePacker::getAnimationNames(){
+    vector<string> names;
+    int spriteSize = sprites.size()-1;
+    for(unsigned int i=0; i<=spriteSize; i++) {
+        ofxTPSprite* sprite = sprites[i];
+        if(sprite->getData()->getAnimated()){
+            if(find(names.begin(), names.end(), sprite->getData()->getAnimationName()) == names.end()){
+                names.push_back(sprite->getData()->getAnimationName());
+                ofLog(OF_LOG_VERBOSE)<<"Animation Named "<<names.back()<<" found"<<endl;
+            }
+        }
+    }
+    return names;
+}
+
+vector<string> ofxTexturePacker::getSpriteNames(){
+    vector<string> names;
+    int spriteSize = sprites.size()-1;
+    for(unsigned int i=0; i<=spriteSize; i++) {
+        ofxTPSprite* sprite = sprites[i];
+        names.push_back(sprite->getName());
+        ofLog(OF_LOG_VERBOSE)<<"Sprite Named "<<names.back()<<" found"<<endl;
+    }
+    return names;
+}
+
+
 bool ofxTexturePacker::load(const string& fileToLoad, bool bLoadTexture) {
     
     removeLoader();

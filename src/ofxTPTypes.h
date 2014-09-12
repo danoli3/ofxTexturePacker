@@ -5,13 +5,7 @@
 // ------------------------------------------------------------------
 
 #pragma once
-
-#ifndef OSXProject_ofxTPTypes_h
-#define OSXProject_ofxTPTypes_h
-
 enum ofxTPSpriteType {
     OFX_TP_SPRITE = 0,
     OFX_TP_ANIMATED_SPRITE
 };
-
-#endif

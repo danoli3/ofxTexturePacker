@@ -152,6 +152,14 @@ void ofxTPAnimatedSprite::firstFrame() {
     setFrame(0);
 }
 
+float ofxTPAnimatedSprite::getWidth(){
+    return getCurrentSprite()->getData()->getWidth();
+}
+
+float ofxTPAnimatedSprite::getHeight(){
+    return getCurrentSprite()->getData()->getHeight();
+}
+
 void ofxTPAnimatedSprite::nextFrame() {
     int index = getCurrentFrame() + 1;
     if(index > frameLast) {

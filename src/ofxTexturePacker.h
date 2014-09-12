@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef __ofxTexturePacker__
-#define __ofxTexturePacker__
-
 #include <iostream>
 #include "ofMain.h"
 #include "ofxTPLoader.h"
@@ -48,6 +45,8 @@ public:
     bool load(const string& fileToLoad, bool bLoadTexture=true);
     
     void drawTest();
+    vector<string> getSpriteNames();
+    vector<string> getAnimationNames();
     
     ofxTPSprite* getSprite(const string& spriteName);
     ofxTPAnimatedSprite* getAnimatedSprite(const string& spriteName);
@@ -78,7 +77,6 @@ inline const string& ofxTexturePacker::getTextureFilePath() const {
     } else {
         return "";
     }
-    
 }
 
-#endif /* defined(__ofxTexturePacker__) */
+
