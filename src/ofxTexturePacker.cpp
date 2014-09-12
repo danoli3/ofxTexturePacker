@@ -99,7 +99,18 @@ bool ofxTexturePacker::load(const string& fileToLoad, bool bLoadTexture) {
     if(loader->getImagePath() != "") {
         if(bLoadTexture == true) {
             texture = new ofTexture();
-            if(ofLoadImage(*texture, loader->getImagePath())) {
+            
+            string textureLocation = "";
+            
+            string directory = ofFilePath::getEnclosingDirectory(fileToLoad, false);
+            bool isTextureWithXML = ofFile::doesFileExist((directory + loader->getImagePath()));
+            if(isTextureWithXML) {
+                textureLocation = directory + loader->getImagePath();
+            } else {
+                textureLocation = loader->getImagePath();
+            }
+            
+            if(ofLoadImage(*texture, textureLocation)) {
                 ofLog(OF_LOG_VERBOSE, "ofxTexturePacker::loaded image");
             } else {
                 ofLog(OF_LOG_ERROR, "ofxTexturePacker:: failed to load texture: " + loader->getImagePath());

@@ -15,22 +15,27 @@ void ofxTPSpriteData::determineAnimated() {
 //    int match(const std::string& subject, Match& mtch, int options = 0) const;
     Poco::RegularExpression::MatchVec matches;
     int numberOfMatches = reg.match(name, 0, matches);
-    if(matches[0].length != 0) {
-        if (matches[2].length > 0) {
-            if (matches[1].length > 0) {
-                animationName = name.substr(matches[1].offset, matches[1].length);
-                if(animationName.substr(animationName.size()-1, animationName.size()) == "_") {
-                    animationName = animationName.substr(0, animationName.size()-1);
+    if(!matches.empty()){
+        if(matches[0].length != 0) {
+            if (matches[2].length > 0) {
+                if (matches[1].length > 0) {
+                    animationName = name.substr(matches[1].offset, matches[1].length);
+                    if(animationName.substr(animationName.size()-1, animationName.size()) == "_") {
+                        animationName = animationName.substr(0, animationName.size()-1);
+                    }
                 }
+                isAnimated = true;
+                frame = ofToInt(name.substr(matches[2].offset, matches[2].length));
+            } else {
+                isAnimated = false;
             }
-            isAnimated = true;
-            frame = ofToInt(name.substr(matches[2].offset, matches[2].length));
-        } else {
-            isAnimated = false;
         }
-    }
-    else {
-        ofLog(OF_LOG_ERROR, "ERROR: Filename format not recognised for " + name);
+        else {
+            ofLog(OF_LOG_ERROR, "ERROR: Filename format not recognised for " + name);
+        }
+    } else {
+        // Make sure not to Trim names in Texture Packer! if you debug your way here!
+        isAnimated = false;
     }
 //---------- CP-11 version
 /** 
