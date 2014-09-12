@@ -3,7 +3,7 @@ ofxTexturePacker
 
 ![Screenshot](https://github.com/danoli3/ofxTexturePacker/raw/master/ofxaddons_thumbnail.png)
 
-OpenFrameworks addon for loading and rendering sprites and animated sprites generated from CodeAndWeb's TexturePacker appliation.
+OpenFrameworks addon for loading and rendering sprites and animated sprites generated from CodeAndWeb's TexturePacker application.
 
 What is TexturePacker?
 ----------------
