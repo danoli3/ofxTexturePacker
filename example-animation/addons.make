@@ -1,0 +1,2 @@
+ofxTexturePacker
+ofxXmlSettings
