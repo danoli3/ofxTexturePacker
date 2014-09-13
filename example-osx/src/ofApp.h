@@ -8,6 +8,7 @@ class ofApp : public ofBaseApp{
 
 	public:
 		void setup();
+        void exit();
 		void update();
 		void draw();
 
@@ -21,11 +22,17 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-        ofxTexturePacker texturePacker;
-        ofImage tp;
-        ofImage small;
+        ofxTexturePacker * tpRotatedTrim;
+        ofxTexturePacker * tpRotatedNoTrim;
+        ofxTexturePacker * tpNoTrim;
+        ofxTexturePacker * tpTrim;
+    
+    
         ofxTPSprite * sprite;
-        ofImage bg;
-        ofxTPAnimatedSprite * animatedSprite;
+    
+        ofxTPAnimatedSprite * tpRotatedTrimAnimation;
+        ofxTPAnimatedSprite * tpRotatedNoTrimAnimation;
+        ofxTPAnimatedSprite * tpTrimAnimation;
+        ofxTPAnimatedSprite * tpNoTrimAnimation;
 		
 };
