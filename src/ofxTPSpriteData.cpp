@@ -6,9 +6,32 @@
 
 #include "ofxTPSpriteData.h"
 
-ofxTPSpriteData::ofxTPSpriteData() : name(""), animationName(""), x(0), y(0), w(0), h(0), oX(0), oY(0), oW(0), oH(0), frame(0), isAnimated(false) {
+ofxTPSpriteData::ofxTPSpriteData() : name(""), animationName(""), x(0), y(0), w(0), h(0), pX(0), pY(0), oX(0), oY(0), oW(0), oH(0), frame(0), bAnimated(false), bTrimmed(false), bPivot(false), bDebugMode(false) {
     
 }
+
+void ofxTPSpriteData::setup() {
+    
+    if(oX != 0 || oY != 0) {
+        bTrimmed = true;
+    }
+    
+    if(pX != 0 || pY != 0) {
+        bPivot = true;
+    }
+    
+    if(bRotated && bTrimmed == true) {
+        int foW = oW;
+        int foH = oH;
+        oW = foH;
+        oH = foW;
+        int foX = oX;
+        int foY = oY;
+        oX = foY;
+        oY = foX;
+    }
+}
+
 
 void ofxTPSpriteData::determineAnimated() {
     Poco::RegularExpression reg("((?:(?![\\d]*[.].*$)[\\w\\s])+)([\\d]*)([.].*)$");
@@ -24,10 +47,10 @@ void ofxTPSpriteData::determineAnimated() {
                         animationName = animationName.substr(0, animationName.size()-1);
                     }
                 }
-                isAnimated = true;
+                bAnimated = true;
                 frame = ofToInt(name.substr(matches[2].offset, matches[2].length));
             } else {
-                isAnimated = false;
+                bAnimated = false;
             }
         }
         else {
@@ -35,7 +58,7 @@ void ofxTPSpriteData::determineAnimated() {
         }
     } else {
         // Make sure not to Trim names in Texture Packer! if you debug your way here!
-        isAnimated = false;
+        bAnimated = false;
     }
 //---------- CP-11 version
 /** 

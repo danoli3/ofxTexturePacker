@@ -61,11 +61,14 @@ vector<ofxTPSpriteData*> ofxTPLoader::load(const string fileName) {
                 sprite->setY(XML->getAttribute("sprite", "y", 0, i));
                 sprite->setW(XML->getAttribute("sprite", "w", 0, i));
                 sprite->setH(XML->getAttribute("sprite", "h", 0, i));
+                sprite->setPX(XML->getAttribute("sprite", "pX", 0, i));
+                sprite->setPY(XML->getAttribute("sprite", "pY", 0, i));
                 sprite->setOffsetX(XML->getAttribute("sprite", "oX", 0, i));
                 sprite->setOffsetY(XML->getAttribute("sprite", "oY", 0, i));
                 sprite->setOffsetWidth(XML->getAttribute("sprite", "oW",  sprite->getW(), i));
                 sprite->setOffsetHeight(XML->getAttribute("sprite", "oH", sprite->getH(), i));
                 sprite->determineRotated(XML->getAttribute("sprite", "r", "", i));
+                sprite->setup();
                 sprites.push_back(sprite);
             }
         }

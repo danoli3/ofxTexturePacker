@@ -13,14 +13,17 @@ float ofxTPSprite::getWidth(){
 }
 
 void ofxTPSprite::draw(int x, int y) {
-    if(data->getRotated()) {
+    if(data->isRotated()) {
         ofPushMatrix();
+        ofTranslate(0, data->getWidth());
         ofRotate(-90);
-        ofTranslate(-(data->getOffsetWidth()), 0);
+    }
+    if(data->isDebugMode()){
+        ofRect(x, y, data->getWidth(), data->getHeight());
     }
     texture->drawSubsection(x+data->getOffsetX(), y+data->getOffsetY(), data->getW(), data->getH(), data->getX(), data->getY(), data->getW(), data->getH());
-//    texture->drawSubsection(x, y, data->getW(), data->getH(), data->getX(), data->getY(), data->getW(), data->getH());
-    if(data->getRotated()) {
+    
+    if(data->isRotated()) {
         ofPopMatrix();
     }
 }
