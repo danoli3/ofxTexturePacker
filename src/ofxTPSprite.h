@@ -18,6 +18,7 @@ public:
     const string& getName() const;
     ofxTPSpriteData* getData();
     float getWidth();
+    void setDebugMode(const bool debugMode);
 protected:
     ofxTPSpriteData* data;
 };
@@ -28,4 +29,10 @@ inline const string& ofxTPSprite::getName() const {
 //----------
 inline ofxTPSpriteData* ofxTPSprite::getData() {
     return data;
+}
+
+inline void ofxTPSprite::setDebugMode(const bool debugMode) {
+    if(data != NULL) {
+        data->setDebugMode(debugMode);
+    }
 }

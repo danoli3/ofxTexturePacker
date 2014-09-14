@@ -51,6 +51,8 @@ public:
     ofxTPSprite* getSprite(const string& spriteName);
     ofxTPAnimatedSprite* getAnimatedSprite(const string& spriteName);
     
+    void setDebugMode(bool debugMode);
+    
     ofTexture* getTexture();
     const string& getTextureFilePath() const;
     void setTexture(ofTexture* newTexture);
@@ -61,6 +63,7 @@ protected:
     vector<ofxTPAnimatedSprite*> animatedSprites;
     ofTexture* texture;
     ofxTPLoader* loader;
+    bool bDebugMode;
     
     void createLoader();
     void removeLoader();

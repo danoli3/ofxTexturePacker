@@ -15,15 +15,47 @@ float ofxTPSprite::getWidth(){
 void ofxTPSprite::draw(int x, int y) {
     if(data->isRotated()) {
         ofPushMatrix();
-        ofTranslate(0, data->getWidth());
-        ofRotate(-90);
+            ofTranslate(x, y); // translate Draw position
+            x = y = 0;
+            ofPushMatrix();
+        
+//            if(data->isDebugMode()){
+//                ofPushStyle();      //----------- Draw original unrotated texture
+//                ofSetColor(255, 0, 0, 128);
+//                ofNoFill();
+//                ofRect(x+data->getOffsetY(), y+data->getOffsetX(), data->getOffsetHeight(), data->getOffsetWidth());
+//                texture->drawSubsection(x+data->getOffsetY(), y+data->getOffsetX(), data->getW(), data->getH(), data->getX(), data->getY(), data->getW(), data->getH());
+//                ofPopStyle();
+//            }
+            ofTranslate(data->getOffsetX(), data->getOffsetHeight()-data->getOffsetY());
+            ofRotate(-90);
+            if(data->isDebugMode()){
+                ofPushStyle();
+                ofSetColor(0, 255, 0, 128);
+                ofNoFill();
+                ofRect(x-data->getOffsetY(), y-data->getOffsetX(), data->getOffsetHeight(), data->getOffsetWidth());
+                ofPopStyle();
+            }
+        
+    } else {
+        x += data->getOffsetX();
+        y += data->getOffsetY();
     }
+    
     if(data->isDebugMode()){
-        ofRect(x, y, data->getWidth(), data->getHeight());
+        if(!data->isRotated()){
+            ofPushStyle();
+            ofNoFill();
+            ofRect(x-data->getOffsetX(), y-data->getOffsetY(), data->getOffsetWidth(), data->getOffsetHeight());
+            ofPopStyle();
+        }
     }
-    texture->drawSubsection(x+data->getOffsetX(), y+data->getOffsetY(), data->getW(), data->getH(), data->getX(), data->getY(), data->getW(), data->getH());
+    
+    texture->drawSubsection(x, y, data->getW(), data->getH(), data->getX(), data->getY(), data->getW(), data->getH());
     
     if(data->isRotated()) {
-        ofPopMatrix();
+            ofPopMatrix();
+         ofPopStyle();
+         ofPopMatrix();
     }
 }

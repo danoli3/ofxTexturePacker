@@ -180,7 +180,7 @@
             <key>heuristicMask</key>
             <false/>
             <key>pivotPoint</key>
-            <enum type="SpriteSettings::PivotPoint">Center</enum>
+            <enum type="SpriteSettings::PivotPoint">TopLeft</enum>
         </struct>
         <key>fileList</key>
         <array>

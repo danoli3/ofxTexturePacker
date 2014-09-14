@@ -4,6 +4,7 @@
 void ofApp::setup(){
     tpRotatedTrim = new ofxTexturePacker();
     tpRotatedTrim->load("texture/rotated-trim.xml");
+    tpRotatedTrim->setDebugMode(true);
     sprite = tpRotatedTrim->getSprite("Box2.png");
     
     //------------------
@@ -18,6 +19,7 @@ void ofApp::setup(){
     //------------------
     tpRotatedNoTrim = new ofxTexturePacker();
     tpRotatedNoTrim->load("texture/rotated-trim.xml");
+    tpRotatedNoTrim->setDebugMode(true);
     tpRotatedNoTrimAnimation = tpRotatedNoTrim->getAnimatedSprite("CapGuyWalk");
     if(tpRotatedNoTrimAnimation != NULL) {
         tpRotatedNoTrimAnimation->setSpeed(24);
@@ -29,6 +31,7 @@ void ofApp::setup(){
     tpTrim = new ofxTexturePacker();
     tpTrim->load("texture/trim.xml");
     tpTrimAnimation = tpTrim->getAnimatedSprite("CapGuyWalk");
+    tpTrim->setDebugMode(true);
     if(tpTrimAnimation != NULL) {
         tpTrimAnimation->setSpeed(24);
         tpTrimAnimation->play();
@@ -38,6 +41,7 @@ void ofApp::setup(){
     
     tpNoTrim = new ofxTexturePacker();
     tpNoTrim->load("texture/notrim.xml");
+    tpNoTrim->setDebugMode(false);
     tpNoTrimAnimation = tpNoTrim->getAnimatedSprite("CapGuyWalk");
     if(tpNoTrimAnimation != NULL) {
         tpNoTrimAnimation->setSpeed(24);
@@ -95,54 +99,77 @@ void ofApp::draw(){
     
     if(tpRotatedTrimAnimation){
         ofPushMatrix();
-        
-        ofTranslate(10, 180);
+        ofTranslate(300*2, 180);
         ofPushStyle();
+        ofSetColor(255, 0, 0);
+        ofDrawBitmapString("BUGGED (moves down in rotate)", 10, -40);
         ofSetColor(0, 0, 0);
         ofDrawBitmapString("Rotation + Trim", 10, -20);
         ofPopStyle();
-        tpRotatedTrimAnimation->draw(0,0);
-        
         ofPopMatrix();
+        
+        
+        tpRotatedTrimAnimation->draw(300*2, 180);
+        
+        
     }
     
     if(tpRotatedNoTrimAnimation){
         ofPushMatrix();
-    
-        ofTranslate(300, 180);
+        ofTranslate(300*3, 180);
         ofPushStyle();
         ofSetColor(0, 0, 0);
         ofDrawBitmapString("Rotation + No Trim", 10, -20);
+        ofSetColor(255, 0, 0);
+        ofDrawBitmapString("BUGGED (moves down in rotate)", 10, -40);
         ofPopStyle();
-        tpRotatedNoTrimAnimation->draw(0,0);
-        
         ofPopMatrix();
+        
+        
+        tpRotatedNoTrimAnimation->draw(300*3, 180);
+        
+    }
+    
+    if(tpTrimAnimation){
+     
+        ofPushStyle();
+        ofSetColor(255, 255, 255,64);
+        tpTrimAnimation->draw(300*2, 180);
+        ofPopStyle();
+        
+        
     }
     
     if(tpTrimAnimation){
         ofPushMatrix();
-        
-        ofTranslate(300*2, 180);
+        ofTranslate(300, 180);
         ofPushStyle();
+        ofSetColor(0, 255, 0);
+        ofDrawBitmapString("Perfect", 10, -40);
         ofSetColor(0, 0, 0);
         ofDrawBitmapString("Trim", 10, -20);
         ofPopStyle();
-        tpTrimAnimation->draw(0,0);
-        
         ofPopMatrix();
+        
+        tpTrimAnimation->draw(300, 180);
+        
+       
     }
     
     if(tpNoTrimAnimation){
         ofPushMatrix();
-        
-        ofTranslate(300*3, 180);
+        ofTranslate(10, 180);
         ofPushStyle();
+        ofSetColor(0, 255, 0);
+        ofDrawBitmapString("Perfect", 10, -40);
         ofSetColor(0, 0, 0);
         ofDrawBitmapString("No Trim", 10, -20);
         ofPopStyle();
-        tpNoTrimAnimation->draw(0,0);
-        
         ofPopMatrix();
+        
+        tpNoTrimAnimation->draw(0, 180);
+        
+        
     }
     
 }

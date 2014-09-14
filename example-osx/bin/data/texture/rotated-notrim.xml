@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:72be6e606581d8c109285d78701180bb:c37f9ede89621dcb2eb19e90fac01841:6edf7c69a6aec9388f30117072cbf926$ -->
+<!-- $TexturePacker:SmartUpdate:bd1b0e4b56c678854d6779f1df1c4e8f:c37f9ede89621dcb2eb19e90fac01841:6edf7c69a6aec9388f30117072cbf926$ -->
 <!--Format:
 n  => name of the sprite
 x  => sprite x pos in texture
@@ -16,22 +16,22 @@ oH => sprite's original height (only available if trimmed)
 r => 'y' only set if sprite is rotated
 -->
 <TextureAtlas imagePath="rotated-notrim.png" width="1713" height="827">
-    <sprite n="Box2.png" x="1571" y="544" w="119" h="120" pX="0.5" pY="0.5"/>
-    <sprite n="CapGuyWalk0001.png" x="2" y="2" w="300" h="521" pX="0.5" pY="0.5"/>
-    <sprite n="CapGuyWalk0002.png" x="2" y="2" w="300" h="521" pX="0.5" pY="0.5"/>
-    <sprite n="CapGuyWalk0003.png" x="2" y="525" w="521" h="300" pX="0.5" pY="0.5" r="y"/>
-    <sprite n="CapGuyWalk0004.png" x="2" y="525" w="521" h="300" pX="0.5" pY="0.5" r="y"/>
-    <sprite n="CapGuyWalk0005.png" x="304" y="2" w="300" h="521" pX="0.5" pY="0.5"/>
-    <sprite n="CapGuyWalk0006.png" x="304" y="2" w="300" h="521" pX="0.5" pY="0.5"/>
-    <sprite n="CapGuyWalk0007.png" x="525" y="525" w="521" h="300" pX="0.5" pY="0.5" r="y"/>
-    <sprite n="CapGuyWalk0008.png" x="525" y="525" w="521" h="300" pX="0.5" pY="0.5" r="y"/>
-    <sprite n="CapGuyWalk0009.png" x="606" y="2" w="300" h="521" pX="0.5" pY="0.5"/>
-    <sprite n="CapGuyWalk0010.png" x="606" y="2" w="300" h="521" pX="0.5" pY="0.5"/>
-    <sprite n="CapGuyWalk0011.png" x="908" y="2" w="300" h="521" pX="0.5" pY="0.5"/>
-    <sprite n="CapGuyWalk0012.png" x="908" y="2" w="300" h="521" pX="0.5" pY="0.5"/>
-    <sprite n="CapGuyWalk0013.png" x="1048" y="525" w="521" h="300" pX="0.5" pY="0.5" r="y"/>
-    <sprite n="CapGuyWalk0014.png" x="1048" y="525" w="521" h="300" pX="0.5" pY="0.5" r="y"/>
-    <sprite n="CapGuyWalk0015.png" x="1210" y="2" w="300" h="521" pX="0.5" pY="0.5"/>
-    <sprite n="CapGuyWalk0016.png" x="1210" y="2" w="300" h="521" pX="0.5" pY="0.5"/>
-    <sprite n="bg.png" x="1571" y="2" w="140" h="540" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="Box2.png" x="1571" y="544" w="119" h="120" pX="0" pY="0"/>
+    <sprite n="CapGuyWalk0001.png" x="2" y="2" w="300" h="521" pX="0" pY="0"/>
+    <sprite n="CapGuyWalk0002.png" x="2" y="2" w="300" h="521" pX="0" pY="0"/>
+    <sprite n="CapGuyWalk0003.png" x="2" y="525" w="521" h="300" pX="0" pY="0" r="y"/>
+    <sprite n="CapGuyWalk0004.png" x="2" y="525" w="521" h="300" pX="0" pY="0" r="y"/>
+    <sprite n="CapGuyWalk0005.png" x="304" y="2" w="300" h="521" pX="0" pY="0"/>
+    <sprite n="CapGuyWalk0006.png" x="304" y="2" w="300" h="521" pX="0" pY="0"/>
+    <sprite n="CapGuyWalk0007.png" x="525" y="525" w="521" h="300" pX="0" pY="0" r="y"/>
+    <sprite n="CapGuyWalk0008.png" x="525" y="525" w="521" h="300" pX="0" pY="0" r="y"/>
+    <sprite n="CapGuyWalk0009.png" x="606" y="2" w="300" h="521" pX="0" pY="0"/>
+    <sprite n="CapGuyWalk0010.png" x="606" y="2" w="300" h="521" pX="0" pY="0"/>
+    <sprite n="CapGuyWalk0011.png" x="908" y="2" w="300" h="521" pX="0" pY="0"/>
+    <sprite n="CapGuyWalk0012.png" x="908" y="2" w="300" h="521" pX="0" pY="0"/>
+    <sprite n="CapGuyWalk0013.png" x="1048" y="525" w="521" h="300" pX="0" pY="0" r="y"/>
+    <sprite n="CapGuyWalk0014.png" x="1048" y="525" w="521" h="300" pX="0" pY="0" r="y"/>
+    <sprite n="CapGuyWalk0015.png" x="1210" y="2" w="300" h="521" pX="0" pY="0"/>
+    <sprite n="CapGuyWalk0016.png" x="1210" y="2" w="300" h="521" pX="0" pY="0"/>
+    <sprite n="bg.png" x="1571" y="2" w="140" h="540" pX="0" pY="0" r="y"/>
 </TextureAtlas>

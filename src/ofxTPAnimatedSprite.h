@@ -53,6 +53,8 @@ public:
     float getWidth();
     float getHeight();
     
+    void setDebugMode(bool debugMode);
+    
 protected:
     string name;
     unsigned int frame;

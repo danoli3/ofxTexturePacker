@@ -5,7 +5,7 @@
 // ------------------------------------------------------------------
 #include "ofxTexturePacker.h"
 
-ofxTexturePacker::ofxTexturePacker() : texture(NULL), loader(NULL) {
+ofxTexturePacker::ofxTexturePacker() : texture(NULL), loader(NULL), bDebugMode(false) {
    
 }
 
@@ -228,4 +228,31 @@ ofxTPAnimatedSprite* ofxTexturePacker::getAnimatedSprite(const string& spriteNam
         return NULL;
     }
     return NULL;
+}
+
+void ofxTexturePacker::setDebugMode(bool debugMode) {
+    if(debugMode != bDebugMode) {
+        bDebugMode = debugMode;
+        if(sprites.size() != 0) {
+            unsigned int spriteSize = sprites.size()-1;
+            for(unsigned int i=0; i<=spriteSize; i++) {
+                ofxTPSprite* sprite = sprites[i];
+                if(sprite != NULL) {
+                    sprite->setDebugMode(bDebugMode);
+                }
+            }
+        }
+        if(animatedSprites.size() != 0) {
+            unsigned int spriteSize = animatedSprites.size()-1;
+            for(unsigned int i=0; i<=spriteSize; i++) {
+                ofxTPAnimatedSprite* animatedSprite = animatedSprites[i];
+                if(animatedSprite != NULL) {
+                    animatedSprite->setDebugMode(bDebugMode);
+                }
+            }
+        }
+    } else {
+        // already set
+        return;
+    }
 }
