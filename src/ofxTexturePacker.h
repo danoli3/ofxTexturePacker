@@ -54,7 +54,7 @@ public:
     void setDebugMode(bool debugMode);
     
     ofTexture* getTexture();
-    const string& getTextureFilePath() const;
+    const string getTextureFilePath() const;
     void setTexture(ofTexture* newTexture);
     
 protected:
@@ -74,12 +74,16 @@ inline ofTexture* ofxTexturePacker::getTexture() {
     return texture;
 }
 
-inline const string& ofxTexturePacker::getTextureFilePath() const {
-    if(loader) {
-        return loader->getImagePath();
+inline const string ofxTexturePacker::getTextureFilePath() const {
+    string textureLocation = "";
+    string directory = ofFilePath::getEnclosingDirectory(loader->getFileXMLPath(), false);
+    bool isTextureWithXML = ofFile::doesFileExist((directory + loader->getImagePath()));
+    if(isTextureWithXML) {
+        textureLocation = directory + loader->getImagePath();
     } else {
-        return "";
+        textureLocation = loader->getImagePath();
     }
+    return textureLocation;
 }
 
 

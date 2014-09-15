@@ -6,7 +6,7 @@
 
 #include "ofxTPLoader.h"
 
-ofxTPLoader::ofxTPLoader() : XML(new ofxXmlSettings()), textureAtlas(new ofxTPTextureAtlas()) {
+ofxTPLoader::ofxTPLoader() : XML(new ofxXmlSettings()), textureAtlas(new ofxTPTextureAtlas()), fileXMLPath("") {
 }
 
 ofxTPLoader::~ofxTPLoader() {
@@ -21,10 +21,11 @@ ofxTPLoader::~ofxTPLoader() {
 }
 
 vector<ofxTPSpriteData*> ofxTPLoader::load(const string fileName) {
-    if( XML->loadFile(fileName) ){
-        ofLog(OF_LOG_VERBOSE, fileName+ " loaded!");
+    fileXMLPath = fileName;
+    if( XML->loadFile(fileXMLPath) ){
+        ofLog(OF_LOG_VERBOSE, fileXMLPath+ " loaded!");
     } else{
-        ofLog(OF_LOG_ERROR, " unable to load " + fileName + " check data/ folder");
+        ofLog(OF_LOG_ERROR, " unable to load " + fileXMLPath + " check data/ folder");
     }
     
     unsigned int isTextureAtlas = XML->getNumTags("TextureAtlas");
