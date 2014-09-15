@@ -48,8 +48,6 @@ public:
     int getH() const;
     int getPX() const;
     int getPY() const;
-    int getWidth() const;
-    int getHeight() const;
     int getOffsetX() const;
     int getOffsetY() const;
     int getOffsetWidth() const;
@@ -61,6 +59,9 @@ public:
     bool isAnimated() const;
     bool isTrimmed() const;
     bool isDebugMode() const;
+    
+    int getWidth() const;
+    int getHeight() const;
     
 protected:
     string name;          // => name of the sprite
@@ -118,8 +119,6 @@ inline int ofxTPSpriteData::getW() const { return w; }
 inline int ofxTPSpriteData::getH() const { return h; }
 inline int ofxTPSpriteData::getPX() const { return pX; }
 inline int ofxTPSpriteData::getPY() const { return pY; }
-inline int ofxTPSpriteData::getWidth() const { return getOffsetWidth(); }
-inline int ofxTPSpriteData::getHeight() const { return getOffsetHeight(); }
 inline int ofxTPSpriteData::getOffsetX() const { return oX; }
 inline int ofxTPSpriteData::getOffsetY() const { return oY; }
 inline int ofxTPSpriteData::getOffsetWidth() const { return oW; }
@@ -130,4 +129,19 @@ inline bool ofxTPSpriteData::isAnimated() const { return bAnimated; }
 inline bool ofxTPSpriteData::hasPivot() const { return bPivot; }
 inline bool ofxTPSpriteData::isTrimmed() const { return bTrimmed; }
 inline bool ofxTPSpriteData::isDebugMode() const { return bDebugMode; }
+
+inline int ofxTPSpriteData::getWidth() const {
+    if(isRotated()) {
+        return getOffsetHeight();
+    } else {
+        return getOffsetWidth();
+    }
+}
+inline int ofxTPSpriteData::getHeight() const {
+    if(isRotated()) {
+        return getOffsetWidth();
+    } else {
+        return getOffsetHeight();
+    }
+}
 
