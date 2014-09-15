@@ -11,6 +11,8 @@
 //-----------------------------------------------------
 class ofxTPSpriteCore {
 public:
+    
+    ofxTPSpriteCore() : texture(NULL), type(OFX_TP_SPRITE), name("") { }
     virtual void draw(int x, int y) {}
     virtual void update(int x, int y) {}
     

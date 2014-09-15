@@ -24,7 +24,9 @@ void ofxTPSprite::draw(int x, int y) {
 //                ofSetColor(255, 0, 0, 128);
 //                ofNoFill();
 //                ofRect(x+data->getOffsetY(), y+data->getOffsetX(), data->getOffsetHeight(), data->getOffsetWidth());
-//                texture->drawSubsection(x+data->getOffsetY(), y+data->getOffsetX(), data->getW(), data->getH(), data->getX(), data->getY(), data->getW(), data->getH());
+//                if(texture != NULL) {
+//                   texture->drawSubsection(x+data->getOffsetY(), y+data->getOffsetX(), data->getW(), data->getH(), data->getX(), data->getY(), data->getW(), data->getH());
+//                }
 //                ofPopStyle();
 //            }
             ofTranslate(data->getOffsetX(), data->getOffsetHeight()-data->getOffsetY());
@@ -50,8 +52,9 @@ void ofxTPSprite::draw(int x, int y) {
             ofPopStyle();
         }
     }
-    
-    texture->drawSubsection(x, y, data->getW(), data->getH(), data->getX(), data->getY(), data->getW(), data->getH());
+    if(texture != NULL) {
+        texture->drawSubsection(x, y, data->getW(), data->getH(), data->getX(), data->getY(), data->getW(), data->getH());
+    }
     
     if(data->isRotated()) {
             ofPopMatrix();

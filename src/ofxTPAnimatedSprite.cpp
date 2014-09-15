@@ -187,6 +187,19 @@ void ofxTPAnimatedSprite::previousFrame() {
     setFrame(index);
 }
 
+void ofxTPAnimatedSprite::setTexture(ofTexture* tex){
+    if(frames.size() != 0) {
+        unsigned int frameSize = frames.size()-1;
+        for(unsigned int i=0; i<=frameSize; i++) {
+            ofxTPSprite* sprite = frames[i];
+            if(sprite != NULL) {
+                sprite->setTexture(tex);
+            }
+        }
+    }
+}
+
+
 void ofxTPAnimatedSprite::setDebugMode(bool debugMode) {
     if(frames.size() != 0) {
         unsigned int frameSize = frames.size()-1;

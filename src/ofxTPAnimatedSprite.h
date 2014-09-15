@@ -53,8 +53,11 @@ public:
     float getWidth();
     float getHeight();
     
+    void setTexture(ofTexture* tex);
+    
     void setDebugMode(bool debugMode);
     
+   
 protected:
     string name;
     unsigned int frame;
