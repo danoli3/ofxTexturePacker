@@ -30,8 +30,8 @@ public:
     void setY(const int& sY);
     void setW(const int& sWidth);
     void setH(const int& sHeight);
-    void setPX(const int& sPX);
-    void setPY(const int& sPY);
+    void setPX(const float& sPX);
+    void setPY(const float& sPY);
     void setWidth(const int& sWidth);
     void setHeight(const int& sHeight);
     void setOffsetX(const int& soX);
@@ -46,8 +46,8 @@ public:
     int getY() const;
     int getW() const;
     int getH() const;
-    int getPX() const;
-    int getPY() const;
+    float getPX() const;
+    float getPY() const;
     int getOffsetX() const;
     int getOffsetY() const;
     int getOffsetWidth() const;
@@ -71,8 +71,8 @@ protected:
     int y;  // y => sprite x pos in texture
     int w;  // w => sprite y pos in texture
     int h;  // h => sprite height (may be trimmed)
-    int pX; // pX => x pos of the pivot point (relative to sprite width)
-    int pY; // pY => y pos of the pivot point (relative to sprite height)
+    float pX; // pX => x pos of the pivot point (relative to sprite width)
+    float pY; // pY => y pos of the pivot point (relative to sprite height)
     int oX; // oX => x pos of the pivot point (relative to sprite width)
     int oY; // oY => sprite's y-corner offset (only available if trimmed)
     int oW; // oW => sprite's original width (only available if trimmed)
@@ -101,8 +101,8 @@ inline void ofxTPSpriteData::setX(const int& sX) { x = sX; }
 inline void ofxTPSpriteData::setY(const int& sY) { y = sY; }
 inline void ofxTPSpriteData::setW(const int& sWidth) { w = sWidth; }
 inline void ofxTPSpriteData::setH(const int& sHeight) { h = sHeight; }
-inline void ofxTPSpriteData::setPX(const int& sPX) { pX = sPX; }
-inline void ofxTPSpriteData::setPY(const int& sPY) { pY = sPY; }
+inline void ofxTPSpriteData::setPX(const float& sPX) { pX = sPX; }
+inline void ofxTPSpriteData::setPY(const float& sPY) { pY = sPY; }
 inline void ofxTPSpriteData::setWidth(const int& sWidth) { w = sWidth; }
 inline void ofxTPSpriteData::setHeight(const int& sHeight) { h = sHeight; }
 inline void ofxTPSpriteData::setOffsetX(const int& soX) { oX = soX; }
@@ -117,8 +117,8 @@ inline int ofxTPSpriteData::getX() const { return x; }
 inline int ofxTPSpriteData::getY() const { return y; }
 inline int ofxTPSpriteData::getW() const { return w; }
 inline int ofxTPSpriteData::getH() const { return h; }
-inline int ofxTPSpriteData::getPX() const { return pX; }
-inline int ofxTPSpriteData::getPY() const { return pY; }
+inline float ofxTPSpriteData::getPX() const { return pX; }
+inline float ofxTPSpriteData::getPY() const { return pY; }
 inline int ofxTPSpriteData::getOffsetX() const { return oX; }
 inline int ofxTPSpriteData::getOffsetY() const { return oY; }
 inline int ofxTPSpriteData::getOffsetWidth() const { return oW; }
