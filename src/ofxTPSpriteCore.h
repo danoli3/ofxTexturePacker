@@ -21,7 +21,7 @@ public:
     void setTexture(ofTexture* tex);
     virtual void setName(const string& sName);
     
-    virtual void setDebugMode(const bool debugMode){};
+    virtual void setDebugMode(bool debugMode){};
     
     virtual const string& getName() const;
     ofxTPSpriteType getType() const;

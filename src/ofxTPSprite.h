@@ -18,7 +18,7 @@ public:
     const string& getName() const;
     ofxTPSpriteData* getData();
     float getWidth();
-    void setDebugMode(const bool debugMode);
+    void setDebugMode(bool debugMode);
 protected:
     ofxTPSpriteData* data;
 };
