@@ -35,7 +35,7 @@ void ofxTPSprite::draw(int x, int y) {
                 ofPushStyle();
                 ofSetColor(0, 255, 0, 128);
                 ofNoFill();
-                ofRect(x-data->getOffsetY(), y-data->getOffsetX(), data->getOffsetHeight(), data->getOffsetWidth());
+                ofDrawRectangle(x-data->getOffsetY(), y-data->getOffsetX(), data->getOffsetHeight(), data->getOffsetWidth());
                 ofPopStyle();
             }
         
@@ -48,7 +48,7 @@ void ofxTPSprite::draw(int x, int y) {
         if(!data->isRotated()){
             ofPushStyle();
             ofNoFill();
-            ofRect(x-data->getOffsetX(), y-data->getOffsetY(), data->getOffsetWidth(), data->getOffsetHeight());
+            ofDrawRectangle(x-data->getOffsetX(), y-data->getOffsetY(), data->getOffsetWidth(), data->getOffsetHeight());
             ofPopStyle();
         }
     }
