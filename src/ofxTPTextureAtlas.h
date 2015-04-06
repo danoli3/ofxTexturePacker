@@ -7,6 +7,9 @@
 #pragma once
 #include "ofMain.h"
 
+class ofxTPTextureAtlas;
+typedef shared_ptr<ofxTPTextureAtlas> ofxTPTextureAtlasPtr;
+
 class ofxTPTextureAtlas {
 public:
     ofxTPTextureAtlas() : imagePath(""), w(0), h(0) {

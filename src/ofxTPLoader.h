@@ -10,6 +10,8 @@
 #include "ofxTPSpriteData.h"
 #include "ofxTPTextureAtlas.h"
 
+class ofxTPLoader;
+typedef shared_ptr<ofxTPLoader> ofxTPLoaderPtr;
 
 class ofxTPLoader {
 public:
@@ -17,17 +19,13 @@ public:
     ofxTPLoader();
     ~ofxTPLoader();
     
-    vector<ofxTPSpriteData*> load(const string fileName);
+    vector<ofxTPSpriteDataPtr> load(const string fileName);
     const string& getImagePath() const;
     const string& getFileXMLPath() const;
-    void clearXML();
     
-
-    
-    ofxTPTextureAtlas * textureAtlas;
+    ofxTPTextureAtlasPtr textureAtlas;
     
 protected:
-    ofxXmlSettings * XML;
     
     string fileXMLPath;
     bool bLoaded;

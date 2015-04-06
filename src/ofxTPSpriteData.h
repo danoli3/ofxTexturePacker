@@ -14,6 +14,9 @@
 //#include "regex.h"  // posix
 #include <Poco/RegularExpression.h>
 
+class ofxTPSpriteData;
+typedef shared_ptr<ofxTPSpriteData> ofxTPSpriteDataPtr;
+
 class ofxTPSpriteData {
 public:
     ofxTPSpriteData();
@@ -26,19 +29,19 @@ public:
     void determineRotated(const string & isRotated);
     void extractFrame();
     
-    void setX(const int& sX);
-    void setY(const int& sY);
-    void setW(const int& sWidth);
-    void setH(const int& sHeight);
-    void setPX(const float& sPX);
-    void setPY(const float& sPY);
-    void setWidth(const int& sWidth);
-    void setHeight(const int& sHeight);
-    void setOffsetX(const int& soX);
-    void setOffsetY(const int& soY);
-    void setOffsetWidth(const int& soWidth);
-    void setOffsetHeight(const int& soHeight);
-    void setDebugMode(const bool debug);
+    void setX(int sX);
+    void setY(int sY);
+    void setW(int sWidth);
+    void setH(int sHeight);
+    void setPX(float sPX);
+    void setPY(float sPY);
+    void setWidth(int sWidth);
+    void setHeight(int sHeight);
+    void setOffsetX(int soX);
+    void setOffsetY(int soY);
+    void setOffsetWidth(int soWidth);
+    void setOffsetHeight(int soHeight);
+    void setDebugMode(bool debug);
     
     const string& getName() const;
     const string& getAnimationName() const;
@@ -97,19 +100,19 @@ inline void ofxTPSpriteData::setName(const string& theName) {
 }
 //--------- Setters
 inline void ofxTPSpriteData::setAnimationName(const string& sAnimationName) { animationName = sAnimationName; }
-inline void ofxTPSpriteData::setX(const int& sX) { x = sX; }
-inline void ofxTPSpriteData::setY(const int& sY) { y = sY; }
-inline void ofxTPSpriteData::setW(const int& sWidth) { w = sWidth; }
-inline void ofxTPSpriteData::setH(const int& sHeight) { h = sHeight; }
-inline void ofxTPSpriteData::setPX(const float& sPX) { pX = sPX; }
-inline void ofxTPSpriteData::setPY(const float& sPY) { pY = sPY; }
-inline void ofxTPSpriteData::setWidth(const int& sWidth) { w = sWidth; }
-inline void ofxTPSpriteData::setHeight(const int& sHeight) { h = sHeight; }
-inline void ofxTPSpriteData::setOffsetX(const int& soX) { oX = soX; }
-inline void ofxTPSpriteData::setOffsetY(const int& soY) { oY = soY; }
-inline void ofxTPSpriteData::setOffsetWidth(const int& soWidth) { oW = soWidth; }
-inline void ofxTPSpriteData::setOffsetHeight(const int& soHeight) { oH = soHeight; }
-inline void ofxTPSpriteData::setDebugMode(const bool debug) { bDebugMode = debug; }
+inline void ofxTPSpriteData::setX(int sX) { x = sX; }
+inline void ofxTPSpriteData::setY(int sY) { y = sY; }
+inline void ofxTPSpriteData::setW(int sWidth) { w = sWidth; }
+inline void ofxTPSpriteData::setH(int sHeight) { h = sHeight; }
+inline void ofxTPSpriteData::setPX(float sPX) { pX = sPX; }
+inline void ofxTPSpriteData::setPY(float sPY) { pY = sPY; }
+inline void ofxTPSpriteData::setWidth(int sWidth) { w = sWidth; }
+inline void ofxTPSpriteData::setHeight(int sHeight) { h = sHeight; }
+inline void ofxTPSpriteData::setOffsetX(int soX) { oX = soX; }
+inline void ofxTPSpriteData::setOffsetY(int soY) { oY = soY; }
+inline void ofxTPSpriteData::setOffsetWidth(int soWidth) { oW = soWidth; }
+inline void ofxTPSpriteData::setOffsetHeight(int soHeight) { oH = soHeight; }
+inline void ofxTPSpriteData::setDebugMode(bool debug) { bDebugMode = debug; }
 //--------- Getters
 inline const string& ofxTPSpriteData::getName() const { return name; }
 inline const string& ofxTPSpriteData::getAnimationName() const { return animationName; }

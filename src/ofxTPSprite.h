@@ -8,31 +8,33 @@
 #include "ofxTPSpriteCore.h"
 #include "ofxTPSpriteData.h"
 
+class ofxTPSprite;
+typedef shared_ptr<ofxTPSprite> ofxTPSpritePtr;
+
 //------------------------------------------------------
 class ofxTPSprite : public ofxTPSpriteCore {
 public:
-    ofxTPSprite(ofxTPSpriteData* theData);
+    ofxTPSprite(ofxTPSpriteDataPtr data);
     
     void draw(int x, int y);
     
     const string& getName() const;
-    ofxTPSpriteData* getData();
+    ofxTPSpriteDataPtr getData();
     float getWidth();
     void setDebugMode(bool debugMode);
 protected:
-    ofxTPSpriteData* data;
+    ofxTPSpriteDataPtr data;
 };
 //----------
 inline const string& ofxTPSprite::getName() const {
     return data->getName();
 }
 //----------
-inline ofxTPSpriteData* ofxTPSprite::getData() {
+inline ofxTPSpriteDataPtr ofxTPSprite::getData() {
     return data;
 }
 
 inline void ofxTPSprite::setDebugMode(const bool debugMode) {
-    if(data != NULL) {
+    if (data)
         data->setDebugMode(debugMode);
-    }
 }

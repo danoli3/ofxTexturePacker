@@ -5,9 +5,11 @@
 // ------------------------------------------------------------------
 #include "ofxTPSprite.h"
 
-ofxTPSprite::ofxTPSprite(ofxTPSpriteData* theData) {
-    data = theData;
+ofxTPSprite::ofxTPSprite(ofxTPSpriteDataPtr theData) :
+    data(theData)
+{
 }
+
 float ofxTPSprite::getWidth(){
     return data->getW();
 }
