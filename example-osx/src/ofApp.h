@@ -22,17 +22,17 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-        ofxTexturePacker * tpRotatedTrim;
-        ofxTexturePacker * tpRotatedNoTrim;
-        ofxTexturePacker * tpNoTrim;
-        ofxTexturePacker * tpTrim;
+        ofxTexturePackerPtr tpRotatedTrim;
+        ofxTexturePackerPtr tpRotatedNoTrim;
+        ofxTexturePackerPtr tpNoTrim;
+        ofxTexturePackerPtr tpTrim;
     
     
-        ofxTPSprite * sprite;
+        ofxTPSpritePtr sprite;
     
-        ofxTPAnimatedSprite * tpRotatedTrimAnimation;
-        ofxTPAnimatedSprite * tpRotatedNoTrimAnimation;
-        ofxTPAnimatedSprite * tpTrimAnimation;
-        ofxTPAnimatedSprite * tpNoTrimAnimation;
+        ofxTPAnimatedSpritePtr tpRotatedTrimAnimation;
+        ofxTPAnimatedSpritePtr tpRotatedNoTrimAnimation;
+        ofxTPAnimatedSpritePtr tpTrimAnimation;
+        ofxTPAnimatedSpritePtr tpNoTrimAnimation;
 		
 };

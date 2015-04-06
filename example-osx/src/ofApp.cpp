@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    tpRotatedTrim = new ofxTexturePacker();
+    tpRotatedTrim = ofxTexturePackerPtr(new ofxTexturePacker());
     tpRotatedTrim->load("texture/rotated-trim.xml");
     tpRotatedTrim->setDebugMode(true);
     sprite = tpRotatedTrim->getSprite("Box2.png");
@@ -17,7 +17,7 @@ void ofApp::setup(){
     }
     
     //------------------
-    tpRotatedNoTrim = new ofxTexturePacker();
+    tpRotatedNoTrim = ofxTexturePackerPtr(new ofxTexturePacker());
     tpRotatedNoTrim->load("texture/rotated-trim.xml");
     tpRotatedNoTrim->setDebugMode(true);
     tpRotatedNoTrimAnimation = tpRotatedNoTrim->getAnimatedSprite("CapGuyWalk");
@@ -28,7 +28,7 @@ void ofApp::setup(){
         ofLog(OF_LOG_FATAL_ERROR, "ofApp::setup():: Could not load animated sprite");
     }
     
-    tpTrim = new ofxTexturePacker();
+    tpTrim = ofxTexturePackerPtr(new ofxTexturePacker());
     tpTrim->load("texture/trim.xml");
     tpTrimAnimation = tpTrim->getAnimatedSprite("CapGuyWalk");
     tpTrim->setDebugMode(true);
@@ -39,7 +39,7 @@ void ofApp::setup(){
         ofLog(OF_LOG_FATAL_ERROR, "ofApp::setup():: Could not load animated sprite");
     }
     
-    tpNoTrim = new ofxTexturePacker();
+    tpNoTrim = ofxTexturePackerPtr(new ofxTexturePacker());
     tpNoTrim->load("texture/notrim.xml");
     tpNoTrim->setDebugMode(false);
     tpNoTrimAnimation = tpNoTrim->getAnimatedSprite("CapGuyWalk");
@@ -54,22 +54,10 @@ void ofApp::setup(){
 
 void ofApp::exit() {
     
-    if(tpRotatedTrim) {
-        delete tpRotatedTrim;
-        tpRotatedTrim = NULL;
-    }
-    if(tpRotatedNoTrim) {
-        delete tpRotatedNoTrim;
-        tpRotatedNoTrim = NULL;
-    }
-    if(tpNoTrim) {
-        delete tpNoTrim;
-        tpNoTrim = NULL;
-    }
-    if(tpTrim) {
-        delete tpTrim;
-        tpTrim = NULL;
-    }
+    tpRotatedTrim.reset();
+    tpRotatedNoTrim.reset();
+    tpNoTrim.reset();
+    tpTrim.reset();
 }
 
 //--------------------------------------------------------------
