@@ -12,21 +12,21 @@
 class ofxTPSpriteCore {
 public:
     
-    ofxTPSpriteCore() : texture(NULL), type(OFX_TP_SPRITE), name("") { }
+    ofxTPSpriteCore() : texture(), type(OFX_TP_SPRITE), name("") { }
     virtual void draw(int x, int y) {}
     virtual void update(int x, int y) {}
     
     bool compareName(const string & otherName) const;
     
-    void setTexture(ofTexture* tex);
+    void setTexture(shared_ptr<ofTexture> tex);
     virtual void setName(const string& sName);
     
-    virtual void setDebugMode(const bool debugMode){};
+    virtual void setDebugMode(bool debugMode){};
     
     virtual const string& getName() const;
     ofxTPSpriteType getType() const;
 protected:
-    ofTexture * texture;
+    shared_ptr<ofTexture> texture;
     ofxTPSpriteType type;
     string name;
 };
@@ -35,7 +35,7 @@ protected:
 inline bool ofxTPSpriteCore::compareName(const string & otherName) const { return (getName() == otherName); }
 //-------
 inline void ofxTPSpriteCore::setName(const string& sName) { name = sName; }
-inline void ofxTPSpriteCore::setTexture(ofTexture* tex) { texture = tex; }
+inline void ofxTPSpriteCore::setTexture(shared_ptr<ofTexture> tex) { texture = tex; }
 //------- Getters
 inline const string& ofxTPSpriteCore::getName() const { return name; }
 inline ofxTPSpriteType ofxTPSpriteCore::getType() const { return type; }

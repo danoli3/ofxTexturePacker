@@ -5,8 +5,11 @@
 // ------------------------------------------------------------------
 #include "ofxTexturePacker.h"
 
-ofxTexturePacker::ofxTexturePacker() : texture(NULL), loader(NULL), bDebugMode(false) {
-   
+ofxTexturePacker::ofxTexturePacker() :
+    texture(),
+    loader(),
+    bDebugMode(false)
+{
 }
 
 ofxTexturePacker::~ofxTexturePacker() {
@@ -14,56 +17,26 @@ ofxTexturePacker::~ofxTexturePacker() {
     removeTexture();
     removeLoader();
     
-    if(animatedSprites.size() != 0) {
-        int animatedSpritesSize = animatedSprites.size()-1;
-        for(int i=animatedSpritesSize; i>=0; i--) {
-            ofxTPAnimatedSprite* sprite = animatedSprites[i];
-            if(sprite != NULL) {
-                delete sprite;
-                sprite = NULL;
-            }
-        }
-    }
-    if(sprites.size() != 0) {
-        int spriteSize = sprites.size()-1;
-        for(int i=spriteSize; i>=0; i--) {
-            ofxTPSprite* sprite = sprites[i];
-            if(sprite != NULL) {
-                delete sprite;
-                sprite = NULL;
-            }
-        }
-    }
-    
+    animatedSprites.clear();
+    sprites.clear();
 }
 
 void ofxTexturePacker::removeLoader() {
-    if(loader) {
-        delete loader;
-        loader = NULL;
-    }
+    loader.reset();
 }
 
 void ofxTexturePacker::createLoader() {
-    if(loader) {
-        removeLoader();
-    }
-    loader = new ofxTPLoader();
-    
+    loader = ofxTPLoaderPtr(new ofxTPLoader());
 }
 
 void ofxTexturePacker::removeTexture() {
-    if(texture) {
-        delete texture;
-        texture = NULL;
-    }
+    texture.reset();
 }
 
 vector<string> ofxTexturePacker::getAnimationNames(){
     vector<string> names;
-    int spriteSize = sprites.size()-1;
-    for(unsigned int i=0; i<=spriteSize; i++) {
-        ofxTPSprite* sprite = sprites[i];
+    for(unsigned int i=0; i < sprites.size(); i++) {
+        ofxTPSpritePtr sprite = sprites[i];
         if(sprite->getData()->isAnimated()){
             if(find(names.begin(), names.end(), sprite->getData()->getAnimationName()) == names.end()){
                 names.push_back(sprite->getData()->getAnimationName());
@@ -76,9 +49,8 @@ vector<string> ofxTexturePacker::getAnimationNames(){
 
 vector<string> ofxTexturePacker::getSpriteNames(){
     vector<string> names;
-    int spriteSize = sprites.size()-1;
-    for(unsigned int i=0; i<=spriteSize; i++) {
-        ofxTPSprite* sprite = sprites[i];
+    for(unsigned int i=0; i < sprites.size(); i++) {
+        ofxTPSpritePtr sprite = sprites[i];
         names.push_back(sprite->getName());
         ofLog(OF_LOG_VERBOSE)<<"Sprite Named "<<names.back()<<" found"<<endl;
     }
@@ -93,14 +65,14 @@ bool ofxTexturePacker::load(const string& fileToLoad, bool bLoadTexture) {
     
     //----------- Load sprites
     createLoader();
-    vector<ofxTPSpriteData*> spriteData = loader->load(fileToLoad);
+    vector<ofxTPSpriteDataPtr> spriteData = loader->load(fileToLoad);
     
     //----------- Load Texture
-    if(loader->getImagePath() != "") {
-        if(bLoadTexture == true) {
-            texture = new ofTexture();
+    if(!loader->getImagePath().empty()) {
+        if(bLoadTexture) {
+            texture = shared_ptr<ofTexture>(new ofTexture());
             
-            string textureLocation = "";
+            string textureLocation;
             
             string directory = ofFilePath::getEnclosingDirectory(fileToLoad, false);
             bool isTextureWithXML = ofFile::doesFileExist((directory + loader->getImagePath()));
@@ -111,9 +83,9 @@ bool ofxTexturePacker::load(const string& fileToLoad, bool bLoadTexture) {
             }
             
             if(ofLoadImage(*texture, textureLocation)) {
-                ofLog(OF_LOG_VERBOSE, "ofxTexturePacker::loaded image");
+                ofLog(OF_LOG_VERBOSE, "Texture '%s' loaded", textureLocation.c_str());
             } else {
-                ofLog(OF_LOG_ERROR, "ofxTexturePacker:: failed to load texture: " + loader->getImagePath());
+                ofLog(OF_LOG_ERROR, "Failed to load texture '%s'", textureLocation.c_str());
                 removeTexture();
                 return false;
             }
@@ -121,16 +93,16 @@ bool ofxTexturePacker::load(const string& fileToLoad, bool bLoadTexture) {
     }
     //----------- Create Sprites
     if(spriteData.size() != 0) {
-        for(unsigned int i=0; i<=spriteData.size()-1; i++) {
-            ofxTPSprite *sprite = new ofxTPSprite(spriteData[i]);
-            if(texture != NULL) {
+        for(unsigned int i=0; i < spriteData.size(); i++) {
+            ofxTPSpritePtr sprite = ofxTPSpritePtr(new ofxTPSprite(spriteData[i]));
+            if(texture) {
                 sprite->setTexture(texture);
             }
             sprites.push_back(sprite);
             if(spriteData[i]->isAnimated()) {
-                ofxTPAnimatedSprite* sp = getAnimatedSprite(spriteData[i]->getAnimationName());
-                if(sp == NULL) {
-                    sp = new ofxTPAnimatedSprite();
+                ofxTPAnimatedSpritePtr sp = getAnimatedSprite(spriteData[i]->getAnimationName());
+                if(!sp) {
+                    sp = ofxTPAnimatedSpritePtr(new ofxTPAnimatedSprite());
                     sp->setName(spriteData[i]->getAnimationName());
                     animatedSprites.push_back(sp);
                 }
@@ -151,61 +123,50 @@ void ofxTexturePacker::drawTest() {
     }
     ofSetColor(255,0,0);
     if(sprites.size() != 0) {
-        int spriteSize = sprites.size()-1;
-        for(int i=0; i<=spriteSize; i++) {
-            ofxTPSprite* sprite = sprites[i];
-            if(sprite != NULL) {
+        for(int i=0; i < sprites.size(); i++) {
+            ofxTPSpritePtr sprite = sprites[i];
+            if (sprite != NULL) {
                 sprite->draw(ofGetWidth()/2-i*55*sin(ofGetElapsedTimef()),0);
             }
         }
     }
 }
 
-ofxTPSprite* ofxTexturePacker::getSprite(const string& spriteName) {
+ofxTPSpritePtr ofxTexturePacker::getSprite(const string& spriteName) {
     if(sprites.size() != 0) {
-        unsigned int spriteSize = sprites.size()-1;
-        for(unsigned int i=0; i<=spriteSize; i++) {
-            ofxTPSprite* sprite = sprites[i];
-            if(sprite != NULL) {
-                if(sprite->compareName(spriteName)) {
-                    return sprite;
-                }
+        for(unsigned int i=0; i < sprites.size(); i++) {
+            ofxTPSpritePtr sprite = sprites[i];
+            if (sprite && sprite->compareName(spriteName)) {
+                return sprite;
             }
         }
     } else {
-        return NULL;
+        return ofxTPSpritePtr();
     }
-    return NULL;
+    return ofxTPSpritePtr();
 }
 
-void ofxTexturePacker::setTexture(ofTexture* newTexture) {
-    if(newTexture == NULL) {
+void ofxTexturePacker::setTexture(shared_ptr<ofTexture> newTexture) {
+    if(!newTexture) {
        ofLog(OF_LOG_ERROR, "ofxTexturePacker::setTexture, passed texture* is NULL");
         return;
     }
-    if(texture) {
-        delete texture;
-        texture = NULL;
-    }
-    
     texture = newTexture;
     
-    if(sprites.size() != 0) {
-        unsigned int spriteSize = sprites.size()-1;
-        for(unsigned int i=0; i<=spriteSize; i++) {
-            ofxTPSprite* sprite = sprites[i];
-            if(sprite != NULL) {
+    if(!sprites.empty()) {
+        for(unsigned int i=0; i < sprites.size(); i++) {
+            ofxTPSpritePtr sprite = sprites[i];
+            if(sprite) {
                 sprite->setTexture(texture);
             }
         }
     }
     
     // -------------- Update sprites with the texture
-    if(animatedSprites.size() != 0) {
-        unsigned int spriteSize = animatedSprites.size()-1;
-        for(unsigned int i=0; i<=spriteSize; i++) {
-            ofxTPAnimatedSprite* animatedSprite = animatedSprites[i];
-            if(animatedSprite != NULL) {
+    if(!animatedSprites.empty()) {
+        for(unsigned int i=0; i < animatedSprites.size(); i++) {
+            ofxTPAnimatedSpritePtr animatedSprite = animatedSprites[i];
+            if(animatedSprite) {
                 animatedSprite->setTexture(texture);
             }
         }
@@ -213,40 +174,35 @@ void ofxTexturePacker::setTexture(ofTexture* newTexture) {
 
 }
 
-ofxTPAnimatedSprite* ofxTexturePacker::getAnimatedSprite(const string& spriteName) {
-    if(animatedSprites.size() != 0) {
-        unsigned int spriteSize = animatedSprites.size()-1;
-        for(unsigned int i=0; i<=spriteSize; i++) {
-            ofxTPAnimatedSprite* animatedSprite = animatedSprites[i];
-            if(animatedSprite != NULL) {
-                if(animatedSprite->compareName(spriteName)) {
-                    return animatedSprite;
-                }
+ofxTPAnimatedSpritePtr ofxTexturePacker::getAnimatedSprite(const string& spriteName) {
+    if(!animatedSprites.empty()) {
+        for(unsigned int i=0; i < animatedSprites.size(); i++) {
+            ofxTPAnimatedSpritePtr animatedSprite = animatedSprites[i];
+            if(animatedSprite && animatedSprite->compareName(spriteName)) {
+                return animatedSprite;
             }
         }
     } else {
-        return NULL;
+        return ofxTPAnimatedSpritePtr();
     }
-    return NULL;
+    return ofxTPAnimatedSpritePtr();
 }
 
 void ofxTexturePacker::setDebugMode(bool debugMode) {
     if(debugMode != bDebugMode) {
         bDebugMode = debugMode;
         if(sprites.size() != 0) {
-            unsigned int spriteSize = sprites.size()-1;
-            for(unsigned int i=0; i<=spriteSize; i++) {
-                ofxTPSprite* sprite = sprites[i];
-                if(sprite != NULL) {
+            for(unsigned int i=0; i < sprites.size(); i++) {
+                ofxTPSpritePtr sprite = sprites[i];
+                if(sprite) {
                     sprite->setDebugMode(bDebugMode);
                 }
             }
         }
         if(animatedSprites.size() != 0) {
-            unsigned int spriteSize = animatedSprites.size()-1;
-            for(unsigned int i=0; i<=spriteSize; i++) {
-                ofxTPAnimatedSprite* animatedSprite = animatedSprites[i];
-                if(animatedSprite != NULL) {
+            for(unsigned int i=0; i < animatedSprites.size(); i++) {
+                ofxTPAnimatedSpritePtr animatedSprite = animatedSprites[i];
+                if(animatedSprite) {
                     animatedSprite->setDebugMode(bDebugMode);
                 }
             }

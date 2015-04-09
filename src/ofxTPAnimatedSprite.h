@@ -10,6 +10,9 @@
 #include "ofxTPTypes.h"
 #include "ofxTPSprite.h"
 
+class ofxTPAnimatedSprite;
+typedef shared_ptr<ofxTPAnimatedSprite> ofxTPAnimatedSpritePtr;
+
 class ofxTPAnimatedSprite : public ofxTPSpriteCore {
 public:
     ofxTPAnimatedSprite();
@@ -20,8 +23,8 @@ public:
     void setName(const string& theName);
     const string& getName() const;
     
-    void addSprite(ofxTPSprite * sprite);
-    ofxTPSprite* getCurrentSprite();
+    void addSprite(ofxTPSpritePtr sprite);
+    ofxTPSpritePtr getCurrentSprite();
     
     
     void play();
@@ -53,7 +56,7 @@ public:
     float getWidth();
     float getHeight();
     
-    void setTexture(ofTexture* tex);
+    void setTexture(shared_ptr<ofTexture> tex);
     
     void setDebugMode(bool debugMode);
     
@@ -77,7 +80,7 @@ protected:
     bool bNewFrame;
     
     //! frame is a vector of all ofxTPSprites for this Animated Sprite Sequence. Memory managed by ofxTexturePacker.
-    vector<ofxTPSprite*> frames;
+    vector<ofxTPSpritePtr> frames;
 };
 //------------
 inline void ofxTPAnimatedSprite::setName(const string& theName) {

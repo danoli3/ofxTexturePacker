@@ -44,18 +44,18 @@ void ofxTPAnimatedSprite::update() {
     }
 }
 
-void ofxTPAnimatedSprite::addSprite(ofxTPSprite * sprite) {
+void ofxTPAnimatedSprite::addSprite(ofxTPSpritePtr sprite) {
     frames.push_back(sprite);
     frameLast = frames.size()-1;
     framesTotal = frames.size();
 }
 
-ofxTPSprite* ofxTPAnimatedSprite::getCurrentSprite() {
+ofxTPSpritePtr ofxTPAnimatedSprite::getCurrentSprite() {
     unsigned int currentFrameIndex = getCurrentFrame();
     unsigned int allFramesIndex = frames.size();
     if(frames.size() == 0 || currentFrameIndex > allFramesIndex) {
         ofLog(OF_LOG_ERROR, "ofxTPAnimatedSprite::getCurrentSprite Current Frame is out of index for loaded AnimatedSprite");
-        return NULL;
+        return ofxTPSpritePtr();
     } else {
         return frames[currentFrameIndex];
     }
@@ -187,12 +187,12 @@ void ofxTPAnimatedSprite::previousFrame() {
     setFrame(index);
 }
 
-void ofxTPAnimatedSprite::setTexture(ofTexture* tex){
+void ofxTPAnimatedSprite::setTexture(shared_ptr<ofTexture> tex){
     if(frames.size() != 0) {
         unsigned int frameSize = frames.size()-1;
         for(unsigned int i=0; i<=frameSize; i++) {
-            ofxTPSprite* sprite = frames[i];
-            if(sprite != NULL) {
+            ofxTPSpritePtr sprite = frames[i];
+            if(sprite) {
                 sprite->setTexture(tex);
             }
         }
@@ -204,8 +204,8 @@ void ofxTPAnimatedSprite::setDebugMode(bool debugMode) {
     if(frames.size() != 0) {
         unsigned int frameSize = frames.size()-1;
         for(unsigned int i=0; i<=frameSize; i++) {
-            ofxTPSprite* sprite = frames[i];
-            if(sprite != NULL) {
+            ofxTPSpritePtr sprite = frames[i];
+            if(sprite) {
                 sprite->setDebugMode(debugMode);
             }
         }

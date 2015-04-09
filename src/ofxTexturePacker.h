@@ -37,6 +37,9 @@
 
 //--------------------------------------------------
 
+class ofxTexturePacker;
+typedef shared_ptr<ofxTexturePacker> ofxTexturePackerPtr;
+
 class ofxTexturePacker {
 public:
     ofxTexturePacker();
@@ -48,21 +51,21 @@ public:
     vector<string> getSpriteNames();
     vector<string> getAnimationNames();
     
-    ofxTPSprite* getSprite(const string& spriteName);
-    ofxTPAnimatedSprite* getAnimatedSprite(const string& spriteName);
+    ofxTPSpritePtr getSprite(const string& spriteName);
+    ofxTPAnimatedSpritePtr getAnimatedSprite(const string& spriteName);
     
     void setDebugMode(bool debugMode);
     
-    ofTexture* getTexture();
+    shared_ptr<ofTexture> getTexture();
     const string getTextureFilePath() const;
-    void setTexture(ofTexture* newTexture);
+    void setTexture(shared_ptr<ofTexture> newTexture);
     
 protected:
 
-    vector<ofxTPSprite*> sprites;
-    vector<ofxTPAnimatedSprite*> animatedSprites;
-    ofTexture* texture;
-    ofxTPLoader* loader;
+    vector<ofxTPSpritePtr> sprites;
+    vector<ofxTPAnimatedSpritePtr> animatedSprites;
+    shared_ptr<ofTexture> texture;
+    ofxTPLoaderPtr loader;
     bool bDebugMode;
     
     void createLoader();
@@ -70,7 +73,7 @@ protected:
     void removeTexture();
 };
 
-inline ofTexture* ofxTexturePacker::getTexture() {
+inline shared_ptr<ofTexture> ofxTexturePacker::getTexture() {
     return texture;
 }
 
