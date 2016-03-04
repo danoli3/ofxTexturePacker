@@ -55,7 +55,11 @@ void ofxTPSprite::draw(int x, int y) {
         }
     }
     if(texture != NULL) {
+        ofPushMatrix();
+        //ofLog() << data->getPX() << " " << data->getW();
+        ofTranslate(-data->getPX() * data->getW(), -data->getPY() * data->getH());
         texture->drawSubsection(x, y, data->getW(), data->getH(), data->getX(), data->getY(), data->getW(), data->getH());
+        ofPopMatrix();
     }
     
     if(data->isRotated()) {
