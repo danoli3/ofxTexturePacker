@@ -50,5 +50,25 @@ ofxTPSprite * normal = texturePacker.getSprite("images/normal.png");
 
 ```
 
+How to load an animated sprite
+```
+ofxTexturePackerPtr texturepacker;
+ofxTPAnimatedSpritePtr spaceship_sprite;
+
+texturepacker = ofxTexturePackerPtr(new ofxTexturePacker());
+texturepacker->load("spaceship/spaceship.xml");
+spaceship_sprite = texturepacker->getAnimatedSprite("spaceship");
+spaceship_sprite->play();
+```
+
+Don't forget to `update()` your sprite.
+
+## Notes
+
+* ofxTexturePacker loads the png image designated by the xml file using a path relative to the xml file's location.
+* getAnimationNames requires that you name your sprites with a common prefix
+* disable trimming if you set the pivot
+
+
 Still a work in progress. Will be maintained.
 
